@@ -1,0 +1,40 @@
+.active{
+    background-color: #353941;
+    border: none;
+    border-radius: 5px;
+}
+.logo_icon{
+  width: 5rem;
+}
+.nav_fontColor{
+    color: #edf2ff;
+}
+.font_discriptionSize{
+    font-size: 12px;
+}
+.nav_hr{
+    border-top: 1px solid #edf2ff;
+}
+.nav-li{
+    padding-left: 1rem;
+}
+.nav-li:hover{
+    background-color: #353941;
+    border: none;
+    border-radius: 5px;
+}
+.logOut_btn{
+    background-color: #030712;
+    border: 1px solid red;
+    box-shadow: 0 0 10px red;
+    border-radius: 25px;
+    color: #edf2ff;
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1rem;
+}
+.logOut_btn:hover{
+    background-color: #edf2ff;
+    color: #030712;
+    border: none;
+}
