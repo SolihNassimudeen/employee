@@ -1,4 +1,4 @@
-<nav class="d-flex flex-column justify-content-between h-100">
+<nav class="d-flex flex-column justify-content-between h-100 sideNav">
     <div>
         <div class="logo-div text-center mt-5">
             <img class="logo_icon" src="../../../../assets/logo/logo-removebg-preview.png" alt="Company logo">
@@ -9,23 +9,26 @@
         <div class="nav_fontColor ps-2">
             <ul class="navbar-nav me-auto gap-1">
                 <li class="nav-item nav-li cursor-pointer" routerLinkActive="active">
-                    <a class="nav-link d-flex align-items-center gap-3"><i class="bi bi-house-door"></i>Dashboard</a>
+                    <a class="nav-link d-flex align-items-center gap-3" routerLink="/admin/dashboard"><i
+                            class="bi bi-house-door"></i>Dashboard</a>
                 </li>
                 <li class="nav-item nav-li cursor-pointer" routerLinkActive="active">
                     <a class="nav-link d-flex align-items-center gap-3" routerLink="/admin/employees"><i
                             class="bi bi-people"></i>Employees</a>
                 </li>
                 <li class="nav-item nav-li cursor-pointer" routerLinkActive="active">
-                    <a class="nav-link d-flex align-items-center gap-3"><i class="bi bi-calendar-week"></i>Leave
+                    <a class="nav-link d-flex align-items-center gap-3" routerLink="/admin/leaveManagement"><i
+                            class="bi bi-calendar-week"></i>Leave
                         Management</a>
                 </li>
                 <li class="nav-item nav-li cursor-pointer" routerLinkActive="active">
-                    <a class="nav-link d-flex align-items-center gap-3"><i
+                    <a class="nav-link d-flex align-items-center gap-3" routerLink="/admin/attendance"><i
                             class="bi bi-clipboard-check"></i>Attendance</a>
                 </li>
                 <hr>
                 <li class="nav-item nav-li cursor-pointer" routerLinkActive="active">
-                    <a class="nav-link d-flex align-items-center gap-3"><i class="bi bi-person"></i>Admin Panel</a>
+                    <a class="nav-link d-flex align-items-center gap-3" routerLink="/admin/adminCabin"><i
+                            class="bi bi-person"></i>Admin Panel</a>
                 </li>
 
             </ul>

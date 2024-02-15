@@ -1,3 +1,6 @@
+.sideNav{
+    position: fixed;
+}
 .active{
     background-color: #353941;
     border: none;
