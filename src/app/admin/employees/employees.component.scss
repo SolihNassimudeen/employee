@@ -1,9 +1,3 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
-*{
-    margin: 0;
-    padding: 0;
-}
 label{
     font-size: .8rem;
     font-weight: bold;
@@ -42,22 +36,10 @@ input::placeholder{
     color: #868e96;
 }
 
-.sectionCard{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 1.5rem;
-}
-.cardSize{
-    width: 200px;
-    background-color: red;
-
-}
-
-
 //card section
 //******************
 .SectionCard{
-    height: 72vh;
+    height: 68vh;
     overflow-y: auto;
 }
 .SectionCard::-webkit-scrollbar {
@@ -83,6 +65,7 @@ input::placeholder{
 }
 .card_name{
     font-size: .9rem;
+    margin: 0;
 }
 .card_font{
     font-size: .7rem;
@@ -110,6 +93,12 @@ input::placeholder{
 .btn_deleteColor{
     background-color: #ffe3e3;
 }
+.btn_deleteColor:hover{
+    box-shadow: 0 0 10px red;
+}
+.btn_editColor:hover{
+    box-shadow: 0 0 10px blue;
+}
 
 //form section
 .form_div{
@@ -131,7 +120,14 @@ input::placeholder{
 
 //modal
 //***********
-.modal_dialog{
-    width: 50%;
+.modal-dialog{
+    max-width: 800px;
     margin: 50px auto;
+}
+.modalCancel{
+    border: none;
+    padding: .5rem 1.5rem ;
+    color: #edf2ff;
+    border-radius: 8px;
+    background-color: #f03e3e;
 }

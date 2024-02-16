@@ -215,5 +215,14 @@ export class ServiceService {
     getEmployeedata(): Observable<any[]> {
         return of(this.employeeData);
     }
-
+    empCodeValidation(IdCode: any) {
+        return this.employeeData.filter((data) => data.emp_code === IdCode)
+    }
+    deleteEmployee(emp_code: any) {
+        const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
+        this.employeeData.splice(index, 1)
+    }
+    getCountOfEmployees() {
+        return this.employeeData.length
+    }
 }
