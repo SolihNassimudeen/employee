@@ -93,7 +93,7 @@
                     <div class="d-flex w-100">
                         <div>
                             <label for="code">Employee code</label>
-                            <input class="form-control w-50 p-1" placeholder="Code" required type="number"
+                            <input class="form-control w-50 p-1" placeholder="Code" type="number"
                                 [(ngModel)]="employeeDetails.emp_code" name="emp_code">
                             <p class="errorMsg" *ngIf="validationMap.get('emp_code')">{{validationMap.get('emp_code')}}
                             </p>
@@ -115,9 +115,106 @@
 
                     </div>
                     <div class="d-flex justify-content-end mt-2 gap-2">
-                        <button class="modalCancel" #modalcancel data-bs-dismiss="modal"
+                        <button class="modalCancel" #addModalcancel data-bs-dismiss="modal"
                             (click)="modalCancel()">cancel</button>
                         <button type=" submit" class="addNewEmployee" (click)="addNewEmployeeSubmit()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="UpdateEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form_div">
+                <h3 class="card_colorViolet mb-2 text-center"><strong>Update the details of the employee</strong>
+                </h3>
+                <hr class="mb-3">
+                <form class="d-flex flex-column gap-2">
+                    <div class=" d-flex flex-column gap-1">
+                        <label for=" img_Url">Upload Image URL</label>
+                        <input class="form-control p-1" type=" text" placeholder="( it is not compulsory )"
+                            [(ngModel)]="employeeDetails.imgurl" name="imgurl">
+                    </div>
+                    <div>
+                        <label for="name">Enter your name</label>
+                        <input class="form-control p-1" type="text" required placeholder="Employee Name"
+                            [(ngModel)]="employeeDetails.name" name="emp_name">
+                        <p class="errorMsg" *ngIf="validationMap.get('name')">{{validationMap.get('name')}}</p>
+                    </div>
+                    <div class="row gap-3">
+                        <div class=" col">
+                            <label for="disabledSelect">Employee Tag</label>
+                            <select id="disabledSelect" class="form-select p-1" [(ngModel)]="employeeDetails.tag"
+                                name="option" required>
+                                <option value="" disabled selected>Select one</option>
+                                <option value="Developer">Developer</option>
+                                <option value="Designer">Designer</option>
+                                <option value="BD">BD</option>
+                            </select>
+                            <p class="errorMsg" *ngIf="validationMap.get('tag')">{{validationMap.get('tag')}}</p>
+
+                        </div>
+                        <div class="col">
+                            <label for="disabledSelect">Employee role</label>
+                            <select id="disabledSelect" class="form-select p-1" [(ngModel)]="employeeDetails.position"
+                                name="option" required>
+                                <option value="" disabled selected>Select one</option>
+                                <option value="Web Developer">Web Developer</option>
+                                <option value="Product Designer">Product Designer</option>
+                                <option value="UX/UI Designer">UX/UI Designer</option>
+                                <option value="Computer Network Architect">Computer Network Architect</option>
+                            </select>
+                            <p class="errorMsg" *ngIf="validationMap.get('position')">{{validationMap.get('position')}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-5 ms-4">
+                        <div class=" form-check d-flex gap-2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="Management" [(ngModel)]="employeeDetails.management" name="management" required>
+                            <label class="form-check-label" for="inlineRadio1">Management</label>
+                        </div>
+
+                        <div class="form-check d-flex gap-2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="Non-Management" [(ngModel)]="employeeDetails.management" name="management">
+                            <label class=" form-check-label" for="inlineRadio2">Non-Management</label>
+                        </div>
+                        <p class="errorMsg" *ngIf="validationMap.get('management')">{{validationMap.get('management')}}
+                        </p>
+                    </div>
+                    <div class="d-flex w-100">
+                        <div>
+                            <label for="code">Employee code</label>
+                            <input disabled class="form-control w-50 p-1" placeholder="Code" required type="number"
+                                [(ngModel)]="employeeDetails.emp_code" name="emp_code">
+                            <p class="errorMsg" *ngIf="validationMap.get('emp_code')">{{validationMap.get('emp_code')}}
+                            </p>
+                        </div>
+                        <div>
+                            <label for="date">Joining date</label>
+                            <input required class="form-control w-100 p-1" type="date"
+                                [(ngModel)]="employeeDetails.joiningdate" name="joiningDate">
+                            <p class="errorMsg" *ngIf="validationMap.get('joiningdate')">
+                                {{validationMap.get('joiningdate')}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="mail">Email</label>
+                        <input required class="form-control p-1" type="email"
+                            placeholder="Enter your email (eg. example@gmail.com)" [(ngModel)]="employeeDetails.email"
+                            name="email">
+                        <p class="errorMsg" *ngIf="validationMap.get('email')">{{validationMap.get('email')}}</p>
+
+                    </div>
+                    <div class="d-flex justify-content-end mt-2 gap-2">
+                        <button class="modalCancel" #updateModalcancel data-bs-dismiss="modal"
+                            (click)="modalCancel()">cancel</button>
+                        <button type=" submit" class="addNewEmployee" (click)="updateEmployeeSubmit()">Submit</button>
                     </div>
                 </form>
             </div>
@@ -170,7 +267,9 @@
             <p class="card_font"><strong>email:</strong><span class="card_colorGray"> {{cardData.email}}</span></p>
             <div class="d-flex gap-3">
                 <div class="flex-fill d-flex justify-content-end">
-                    <button class="btn_editColor card_btnStructure"><i class="bi bi-pencil-fill"></i></button>
+                    <button class="btn_editColor card_btnStructure" data-bs-toggle="modal"
+                        data-bs-target="#UpdateEmployeeModal" (click)="beforeUpdation(cardData.emp_code)"><i
+                            class="bi bi-pencil-fill"></i></button>
                 </div>
                 <div class="flex-fill">
                     <button class="btn_deleteColor card_btnStructure" data-bs-toggle="modal"

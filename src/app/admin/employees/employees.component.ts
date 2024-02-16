@@ -9,12 +9,15 @@ import { Employee } from '../../shared/employeeData.interface';
 })
 export class EmployeesComponent implements OnInit {
 
-    @ViewChild('modalcancel') modalcancel!: ElementRef;
+    @ViewChild('addModalcancel') addModalcancel!: ElementRef;
+    @ViewChild('updateModalcancel') updateModalcancel!: ElementRef;
     employeeArray: Employee[] = [];
-    employeeDetails: Employee = new Employee();
+    employeeDetails: any = new Employee();
     validationMap = new Map();
     emp_CodeForDeletion: any
     emp_Count: number | null = null;
+    isUpdationEmployeeOn = true
+
 
     constructor(public serviceData: ServiceService) { }
 
@@ -37,14 +40,34 @@ export class EmployeesComponent implements OnInit {
         if (!this.validationMap.size) {
             this.serviceData.employeeData.push(this.employeeDetails);
             this.getServiceData();
-            (this.modalcancel.nativeElement as HTMLButtonElement).click();
+            (this.addModalcancel.nativeElement as HTMLButtonElement).click();
             this.employeeDetails = new Employee;
+        }
+    }
+
+    beforeUpdation(empCode: any) {
+        this.employeeDetails = this.serviceData.getDataForUpdation(empCode);
+        this.isUpdationEmployeeOn = false
+    }
+
+    updateEmployeeSubmit() {
+        this.validationMap.clear()
+        this.defaultImgPath()
+        this.validationCheck()
+        if (!this.validationMap.size) {
+            const index = this.getIndexFromEmployees(this.employeeDetails.emp_code)
+            this.serviceData.employeeData[index] = this.employeeDetails
+            this.getServiceData();
+            (this.updateModalcancel.nativeElement as HTMLButtonElement).click();
+            this.employeeDetails = new Employee;
+            this.isUpdationEmployeeOn = false;
         }
     }
 
     modalCancel() {
         this.employeeDetails = new Employee;
         this.validationMap.clear();
+        this.isUpdationEmployeeOn = true;
     }
 
     beforeDeletionConformed(empCode: any) {
@@ -73,9 +96,11 @@ export class EmployeesComponent implements OnInit {
         if (!this.employeeDetails.emp_code) {
             this.validationMap.set('emp_code', "Please enter a employee code.");
         }
-        if (this.employeeDetails.emp_code) {
-            if (!this.empCodeValidation()) {
-                this.validationMap.set('emp_code', "Emp code already exist")
+        if (this.isUpdationEmployeeOn) {
+            if (this.employeeDetails.emp_code) {
+                if (!this.empCodeValidation()) {
+                    this.validationMap.set('emp_code', "Emp code already exist")
+                }
             }
         }
         if (!this.employeeDetails.joiningdate) {
@@ -106,6 +131,8 @@ export class EmployeesComponent implements OnInit {
         else {
             return true;
         }
-
+    }
+    getIndexFromEmployees(emp_code: any) {
+        return this.serviceData.employeeData.findIndex(obj => obj.emp_code === emp_code)
     }
 }

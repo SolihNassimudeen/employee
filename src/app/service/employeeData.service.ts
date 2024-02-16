@@ -225,4 +225,7 @@ export class ServiceService {
     getCountOfEmployees() {
         return this.employeeData.length
     }
+    getDataForUpdation(emp_code: any) {
+        return this.employeeData.find(data => data.emp_code === emp_code)
+    }
 }
