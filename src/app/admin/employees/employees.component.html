@@ -1,4 +1,4 @@
-<section class="px-3">
+<section class="px-lg-3 px-md-2">
     <div class="pt-3 pb-3">
         <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
                 class="activePageTag">Employees</span></p>
@@ -21,7 +21,8 @@
                 <div class="input-group">
                     <span class="input-group-text p-2" id="basic-addon1"><i class="bi bi-search"></i></span>
                     <input type="text" class="form-control p-2" placeholder="Search" aria-label="Username"
-                        aria-describedby="basic-addon1">
+                        aria-describedby="basic-addon1" [(ngModel)]="searchingName" name="searchingName"
+                        (ngModelChange)="searchAnEmployee()">
                 </div>
             </form>
         </div>
@@ -246,9 +247,44 @@
     </div>
 </div>
 
-<section class="row mx-1 mt-3 SectionCard">
-    <div class="col-md-4 col-lg-3 p-2" *ngFor="let cardData of employeeArray">
-        <div class="card p-4 gap-2">
+<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length<1">
+    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of employeeArray">
+        <div class="card p-md-3 p-xl-4 gap-md-2">
+            <div class="d-flex gap-3 align-items-center">
+                <img class="employee_img rounded-circle" src="{{cardData.imgurl}}" alt="default employee image">
+                <div class="d-flex flex-column gap-1">
+                    <p class="card_name"><strong>{{cardData.name}}</strong></p>
+                    <p class="card_font card_colorGray">{{cardData.position}}</p>
+                </div>
+            </div>
+            <div class="d-flex card_font card_colorViolet gap-2">
+                <p class="cardHighlight ">{{cardData.tag}}</p>
+                <p class="cardHighlight">{{cardData.management}}</p>
+            </div>
+            <p class="card_font"><strong>Emp Code:</strong><span class="card_colorGray"> {{cardData.emp_code}}</span>
+            </p>
+            <p class="card_font"><strong>Joining Date:</strong><span class="card_colorGray">
+                    {{cardData.joiningdate}}</span></p>
+            <p class="card_font"><strong>email:</strong><span class="card_colorGray"> {{cardData.email}}</span></p>
+            <div class="d-flex gap-3">
+                <div class="flex-fill d-flex justify-content-end">
+                    <button class="btn_editColor card_btnStructure" data-bs-toggle="modal"
+                        data-bs-target="#UpdateEmployeeModal" (click)="beforeUpdation(cardData.emp_code)"><i
+                            class="bi bi-pencil-fill"></i></button>
+                </div>
+                <div class="flex-fill">
+                    <button class="btn_deleteColor card_btnStructure" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal" (click)="beforeDeletionConformed(cardData.emp_code)"><i
+                            class="bi bi-trash-fill"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length>0">
+    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of searchEmployeeArray">
+        <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
                 <img class="employee_img rounded-circle" src="{{cardData.imgurl}}" alt="default employee image">
                 <div class="d-flex flex-column gap-1">

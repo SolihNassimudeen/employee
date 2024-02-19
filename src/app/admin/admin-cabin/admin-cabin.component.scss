@@ -1,0 +1,69 @@
+p {
+    margin: 0;
+    color: #868e96;
+}
+
+span {
+    color: #222;
+}
+
+.activePageArrow {
+    color: #adb5bd;
+}
+
+.activePageTag {
+    font-size: 10px;
+    color: #845ef7;
+    font-weight: 600;
+
+}
+
+.addNewAdmin {
+    background-color: #845ef7;
+    border: none;
+    padding: .5rem 1.5rem;
+    color: #edf2ff;
+    border-radius: 8px;
+}
+
+.addNewAdmin:hover {
+    background-color: #9775fa;
+}
+
+.addIcon {
+    font-size: 1rem;
+}
+
+.adminTitle {
+    font-size: 1.8rem;
+}
+
+.adminDiscription {
+    font-size: .8rem;
+    color: #868e96;
+}
+
+//admin card section
+//************************
+.card_btnStructure {
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.btn_editColor {
+    background-color: #dbe4ff;
+}
+
+.btn_deleteColor {
+    background-color: #ffe3e3;
+}
+
+.btn_deleteColor:hover {
+    box-shadow: 0 0 10px red;
+}
+
+.btn_editColor:hover {
+    box-shadow: 0 0 10px blue;
+}

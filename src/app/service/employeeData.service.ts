@@ -228,4 +228,7 @@ export class ServiceService {
     getDataForUpdation(emp_code: any) {
         return this.employeeData.find(data => data.emp_code === emp_code)
     }
+    searchAnEmployee(name: string) {
+        return this.employeeData.filter((data) => data.name.includes(name))
+    }
 }

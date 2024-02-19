@@ -12,11 +12,13 @@ export class EmployeesComponent implements OnInit {
     @ViewChild('addModalcancel') addModalcancel!: ElementRef;
     @ViewChild('updateModalcancel') updateModalcancel!: ElementRef;
     employeeArray: Employee[] = [];
+    searchEmployeeArray: Employee[] = [];
+    searchingName: string = '';
     employeeDetails: any = new Employee();
     validationMap = new Map();
-    emp_CodeForDeletion: any
+    emp_CodeForDeletion: any;
     emp_Count: number | null = null;
-    isUpdationEmployeeOn = true
+    isUpdationEmployeeOn = true;
 
 
     constructor(public serviceData: ServiceService) { }
@@ -31,6 +33,10 @@ export class EmployeesComponent implements OnInit {
         });
         this.emp_Count = this.serviceData.getCountOfEmployees()
 
+    }
+
+    searchAnEmployee() {
+        this.searchEmployeeArray = this.serviceData.searchAnEmployee(this.searchingName.trim());
     }
 
     addNewEmployeeSubmit() {
@@ -79,6 +85,9 @@ export class EmployeesComponent implements OnInit {
         this.getServiceData();
     }
 
+    getIndexFromEmployees(emp_code: any) {
+        return this.serviceData.employeeData.findIndex(obj => obj.emp_code === emp_code)
+    }
 
     validationCheck() {
         if (!this.employeeDetails.name) {
@@ -131,8 +140,5 @@ export class EmployeesComponent implements OnInit {
         else {
             return true;
         }
-    }
-    getIndexFromEmployees(emp_code: any) {
-        return this.serviceData.employeeData.findIndex(obj => obj.emp_code === emp_code)
     }
 }
