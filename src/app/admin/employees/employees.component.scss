@@ -1,133 +1,158 @@
-label{
+label {
     font-size: .8rem;
     font-weight: bold;
 }
-input::placeholder{
+
+input::placeholder {
     font-size: .8rem;
 }
 
-.activePageArrow{
- color: #adb5bd;
+.activePageArrow {
+    color: #adb5bd;
 }
-.activePageTag{
+
+.activePageTag {
     font-size: 10px;
     color: #845ef7;
     font-weight: 600;
-    
+
 }
-.addNewEmployee{
+
+.addNewEmployee {
     background-color: #845ef7;
     border: none;
-    padding: .5rem 1.5rem ;
-    color: #edf2ff;
+    padding: .5rem 1.5rem;
+    color: #f3f6ff;
     border-radius: 8px;
 }
-.addNewEmployee:hover{
+
+.addNewEmployee:hover {
     background-color: #9775fa;
 }
-.addIcon{
+
+.addIcon {
     font-size: 1rem;
 }
-.employeeTitle{
+
+.employeeTitle {
     font-size: 1.8rem;
 }
-.employeeDiscription{
+
+.employeeDiscription {
     font-size: .8rem;
     color: #868e96;
 }
 
 //card section
 //******************
-.SectionCard{
+.SectionCard {
     height: 68vh;
     overflow-y: auto;
 }
+
 .SectionCard::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  .SectionCard::-webkit-scrollbar-thumb {
-    background: #845ef7;
-  }
-  
-  .SectionCard::-webkit-scrollbar-thumb:hover {
-    background: #9775fa;
-  }
-  
-  .SectionCard::-webkit-scrollbar-thumb:active {
-    background: #dbe4ff;
-  }
-  
+}
 
-.employee_img{
+.SectionCard::-webkit-scrollbar-thumb {
+    background: #845ef7;
+}
+
+.SectionCard::-webkit-scrollbar-thumb:hover {
+    background: #9775fa;
+}
+
+.SectionCard::-webkit-scrollbar-thumb:active {
+    background: #dbe4ff;
+}
+
+
+.employee_img {
     width: 2.5rem;
     height: 2.5rem;
 }
-.card_name{
+
+.card_name {
     font-size: .9rem;
     margin: 0;
 }
-.card_font{
+
+.card_font {
     font-size: .7rem;
 }
-.card_colorGray{
+
+.card_colorGray {
     color: #868e96;
 }
-.card_colorViolet{
+
+.card_colorViolet {
     color: #845ef7;
 }
-.cardHighlight{
+
+.cardHighlight {
     background-color: #f3f0ff;
     padding: 1px 8px;
     border-radius: 2px;
 }
-.card_btnStructure{
+
+.card_btnStructure {
     border: none;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
 }
-.btn_editColor{
+
+.btn_editColor {
     background-color: #dbe4ff;
 }
-.btn_deleteColor{
+
+.btn_deleteColor {
     background-color: #ffe3e3;
 }
-.btn_deleteColor:hover{
+
+.btn_deleteColor:hover {
     box-shadow: 0 0 10px red;
 }
-.btn_editColor:hover{
+
+.btn_editColor:hover {
     box-shadow: 0 0 10px blue;
 }
 
 //form section
-.form_div{
+.form_div {
     border: 1px solid #868e96;
     border-radius: 5px;
     padding: 1rem;
 }
-.cancelBtn{
+
+.cancelBtn {
     padding: 0.5rem 5rem;
     border-radius: 5px;
     background-color: #f03e3e;
     border: none;
     color: #edf2ff;
 }
-.errorMsg{
+
+.errorMsg {
     font-size: 12px;
     color: red;
 }
 
 //modal
 //***********
-.modal-dialog{
+.modal-dialog {
     max-width: 800px;
     margin: 50px auto;
 }
-.modalCancel{
+
+.modalCancel {
     border: none;
-    padding: .5rem 1.5rem ;
+    padding: .5rem 1.5rem;
     color: #edf2ff;
     border-radius: 8px;
     background-color: #f03e3e;
+}
+
+.not_found {
+    color: #845ef7;
 }

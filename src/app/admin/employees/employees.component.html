@@ -236,7 +236,7 @@
                 Please confirm that you want this data deleted
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                <button type="button" class="addNewEmployee" data-bs-dismiss="modal">
                     Cancel
                 </button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="afterDeletionConformed()">
@@ -247,7 +247,7 @@
     </div>
 </div>
 
-<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length<1">
+<section class="row mx-1 mt-3 SectionCard" *ngIf="!searchingName">
     <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of employeeArray">
         <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
@@ -282,7 +282,7 @@
     </div>
 </section>
 
-<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length>0">
+<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length>0 && searchingName!==''">
     <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of searchEmployeeArray">
         <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
@@ -315,4 +315,7 @@
             </div>
         </div>
     </div>
+</section>
+<section *ngIf="searchEmployeeArray.length<1 && searchingName" class="d-flex mx-1 justify-content-center mt-5">
+    <p class="not_found">item not found....!</p>
 </section>

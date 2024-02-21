@@ -1,0 +1,150 @@
+//header Tag
+.activePageArrow {
+    color: #adb5bd;
+}
+
+.activePageTag {
+    font-size: 10px;
+    color: #845ef7;
+    font-weight: 600;
+
+}
+
+.boxShadowDashboard {
+    box-shadow: 0 0 12px -1px #e5dbff;
+}
+
+.boxShadowDashboard:hover {
+    box-shadow: 0 0 12px -2px #b197fc;
+}
+
+//chart
+.doughnutChartDiv {
+    padding: 50px;
+}
+
+.doughnutContainer {
+    width: 50%;
+}
+
+.chartFieldColordiv {
+    width: .8rem;
+    height: .8rem;
+}
+
+.inProgressColor {
+    background-color: rgba(153, 102, 255, 0.2);
+}
+
+.pendingColor {
+    background-color: #f03e3e;
+}
+
+.completedColor {
+    background-color: #845ef7;
+}
+
+// new project section 
+.addNewProject {
+    background-color: #845ef7;
+    border: none;
+    padding: .5rem 1.5rem;
+    color: #edf2ff;
+    border-radius: 8px;
+}
+
+.addNewProject:hover {
+    background-color: #9775fa;
+}
+
+//total project div
+.totalProjectContainer {
+    overflow-y: auto;
+    height: 27.9rem;
+}
+
+.totalProjectContainer::-webkit-scrollbar {
+    width: 8px;
+    opacity: 0;
+}
+
+.totalProjectContainer:hover::-webkit-scrollbar {
+    opacity: 1;
+}
+
+
+.totalProjectContainer::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.totalProjectContainer:hover::-webkit-scrollbar-thumb {
+    background: #845ef7;
+}
+
+.totalProjectContainer::-webkit-scrollbar-thumb:active {
+    background: #dbe4ff;
+}
+
+.projectContainer {
+    border-bottom: 1px solid #dddee0;
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+    overflow-y: auto;
+}
+
+.radioLabel {
+    color: #868e96;
+    font-size: .7rem;
+    font-weight: bold;
+}
+
+.card_btnStructure {
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.btn_editColor {
+    background-color: #dbe4ff;
+}
+
+.btn_deleteColor {
+    background-color: #ffe3e3;
+}
+
+.btn_deleteColor:hover {
+    box-shadow: 0 0 10px red;
+}
+
+.btn_editColor:hover {
+    box-shadow: 0 0 10px blue;
+}
+
+//pending project
+.pendingProjectContainer {
+    height: 20.5rem;
+    overflow-y: auto;
+}
+
+.pendingProjectContainer::-webkit-scrollbar {
+    width: 8px;
+    display: none;
+}
+
+.pendingProjectContainer:hover::-webkit-scrollbar {
+    display: initial;
+}
+
+
+.pendingProjectContainer::-webkit-scrollbar-thumb {
+    background: #845ef7;
+}
+
+.pendingProjectContainer::-webkit-scrollbar-thumb:hover {
+    background: #9775fa;
+}
+
+.totalProjectContainer::-webkit-scrollbar-thumb:active {
+    background: #dbe4ff;
+}

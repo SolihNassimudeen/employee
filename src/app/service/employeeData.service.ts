@@ -209,6 +209,41 @@ export class ServiceService {
             "email": "lucas@gmail.com"
         }
     ]
+    public projectList: any[] = [
+        { projectName: 'Project 1', status: 'completed' },
+        { projectName: 'Project 2', status: 'progress' },
+        { projectName: 'Project 3', status: 'completed' },
+        { projectName: 'Project 4', status: 'pending' },
+        { projectName: 'Project 5', status: 'completed' },
+        { projectName: 'Project 6', status: 'progress' },
+        { projectName: 'Project 7', status: 'pending' },
+        { projectName: 'Project 8', status: 'completed' },
+        { projectName: 'Project 9', status: 'progress' },
+        { projectName: 'Project 10', status: 'pending' },
+        { projectName: 'Project 11', status: 'completed' },
+        { projectName: 'Project 12', status: 'progress' },
+        { projectName: 'Project 13', status: 'completed' },
+        { projectName: 'Project 14', status: 'pending' },
+        { projectName: 'Project 15', status: 'completed' },
+        { projectName: 'Project 16', status: 'progress' },
+        { projectName: 'Project 17', status: 'pending' },
+        { projectName: 'Project 18', status: 'completed' },
+        { projectName: 'Project 19', status: 'progress' },
+        { projectName: 'Project 20', status: 'pending' },
+        { projectName: 'Project 21', status: 'completed' },
+        { projectName: 'Project 22', status: 'progress' },
+        { projectName: 'Project 23', status: 'completed' },
+        { projectName: 'Project 24', status: 'pending' },
+        { projectName: 'Project 25', status: 'completed' },
+        { projectName: 'Project 26', status: 'progress' },
+        { projectName: 'Project 27', status: 'pending' },
+        { projectName: 'Project 28', status: 'completed' },
+        { projectName: 'Project 29', status: 'progress' },
+        { projectName: 'Project 30', status: 'pending' }
+    ]
+
+
+
 
     constructor() { }
 
@@ -230,5 +265,33 @@ export class ServiceService {
     }
     searchAnEmployee(name: string) {
         return this.employeeData.filter((data) => data.name.includes(name))
+    }
+
+    addProject(projectName: any) {
+        const newObject = { projectName: projectName, status: 'pending' }
+        this.projectList.push(newObject)
+        return "project added successfully"
+    }
+    completedProjectCount() {
+        const completedproject = this.projectList.filter((data) => data.status.includes('completed'))
+        return completedproject.length
+    }
+    onProcessProjectCount() {
+        const onProcessProjectCount = this.projectList.filter((data) => data.status.includes('progress'))
+        return onProcessProjectCount.length
+    }
+    pendingProjectCount() {
+        const pendingProjectCount = this.projectList.filter((data) => data.status.includes('pending'))
+        return pendingProjectCount.length
+    }
+    pendingProject() {
+        return this.projectList.filter((data) => data.status.includes('pending'))
+    }
+    deletitemfromProjectlist(deleteIndex: number) {
+        this.projectList.splice(deleteIndex, 1)
+    }
+    editProjectList(data: any, editIndex: any) {
+        this.projectList[editIndex] = data;
+        return null;
     }
 }

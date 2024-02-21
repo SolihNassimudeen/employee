@@ -11,6 +11,9 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { AdminCabinComponent } from './admin-cabin/admin-cabin.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+// import { ChartModule } from 'angular-highcharts';
+
+
 
 
 
@@ -29,7 +32,7 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         AdminRoutingModule,
         SharedModule,
-
+        // ChartModule
     ]
 })
 export class AdminModule { }
