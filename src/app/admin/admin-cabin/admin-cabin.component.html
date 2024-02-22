@@ -1,7 +1,7 @@
 <section class="px-lg-3 px-md-2">
     <div class="pt-3 pb-3">
         <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
-                class="activePageTag">Admin (count/5)</span></p>
+                class="activePageTag">Admin ({{adminCount}}/5)</span></p>
     </div>
 
     <div class="d-flex justify-content-between">
@@ -20,10 +20,10 @@
 <hr>
 
 <section class="d-flex flex-column gap-3">
-    <div class="card flex-row justify-content-between p-3 align-items-center">
-        <p>Name: <strong><span>Solih</span></strong></p>
-        <p>Position: <strong><span>Hr</span></strong></p>
-        <p>Username: <strong><span>solih</span></strong></p>
+    <div *ngFor="let admin of adminDetailsArray" class="card flex-row justify-content-between p-3 align-items-center">
+        <p>Name: <strong><span>{{admin.name}}</span></strong></p>
+        <p>Position: <strong><span>{{admin.position}}</span></strong></p>
+        <p>Username: <strong><span>{{admin.username}}</span></strong></p>
         <div class="d-flex gap-3">
             <div class="flex-fill d-flex justify-content-end">
                 <button class="btn_editColor card_btnStructure" data-bs-toggle="modal" title="click for edit"

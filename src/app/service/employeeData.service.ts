@@ -241,32 +241,19 @@ export class ServiceService {
         { projectName: 'Project 29', status: 'progress' },
         { projectName: 'Project 30', status: 'pending' }
     ]
+    public adminList: any[] = [
+        { name: 'solih', position: 'Employee', username: 'solih', password: 1234 },
+        { name: 'admin 1', position: 'Employee', username: 'user1', password: 1234 },
+        { name: 'admin 2', position: 'Employee', username: 'user2', password: 1234 },
+        { name: 'admin 3', position: 'Employee', username: 'user3', password: 1234 },
+        { name: 'admin 4', position: 'Manager', username: 'user4', password: 1234 },
+    ]
 
 
 
 
     constructor() { }
-
-    getEmployeedata(): Observable<any[]> {
-        return of(this.employeeData);
-    }
-    empCodeValidation(IdCode: any) {
-        return this.employeeData.filter((data) => data.emp_code === IdCode)
-    }
-    deleteEmployee(emp_code: any) {
-        const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
-        this.employeeData.splice(index, 1)
-    }
-    getCountOfEmployees() {
-        return this.employeeData.length
-    }
-    getDataForUpdation(emp_code: any) {
-        return this.employeeData.find(data => data.emp_code === emp_code)
-    }
-    searchAnEmployee(name: string) {
-        return this.employeeData.filter((data) => data.name.includes(name))
-    }
-
+    // dashboard
     addProject(projectName: any) {
         const newObject = { projectName: projectName, status: 'pending' }
         this.projectList.push(newObject)
@@ -293,5 +280,34 @@ export class ServiceService {
     editProjectList(data: any, editIndex: any) {
         this.projectList[editIndex] = data;
         return null;
+    }
+
+    // employee
+    getEmployeedata(): Observable<any[]> {
+        return of(this.employeeData);
+    }
+    empCodeValidation(IdCode: any) {
+        return this.employeeData.filter((data) => data.emp_code === IdCode)
+    }
+    deleteEmployee(emp_code: any) {
+        const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
+        this.employeeData.splice(index, 1)
+    }
+    getCountOfEmployees() {
+        return this.employeeData.length
+    }
+    getDataForUpdation(emp_code: any) {
+        return this.employeeData.find(data => data.emp_code === emp_code)
+    }
+    searchAnEmployee(name: string) {
+        return this.employeeData.filter((data) => data.name.includes(name))
+    }
+
+    // admin
+    adminsCount() {
+        return this.adminList.length
+    }
+    getAdminDetails(): Observable<any[]> {
+        return of(this.adminList)
     }
 }
