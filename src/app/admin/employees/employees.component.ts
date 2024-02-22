@@ -19,6 +19,8 @@ export class EmployeesComponent implements OnInit {
     emp_CodeForDeletion: any;
     emp_Count: number | null = null;
     isUpdationEmployeeOn = true;
+    emp_codeFound = true;
+
 
 
     constructor(public serviceData: ServiceService) { }
@@ -30,9 +32,8 @@ export class EmployeesComponent implements OnInit {
     getServiceData() {
         this.serviceData.getEmployeedata().subscribe(data => {
             this.employeeArray = data;
+            this.emp_Count = this.employeeArray.length
         });
-        this.emp_Count = this.serviceData.getCountOfEmployees()
-
     }
 
     searchAnEmployee() {
@@ -82,7 +83,7 @@ export class EmployeesComponent implements OnInit {
 
     afterDeletionConformed() {
         this.serviceData.deleteEmployee(this.emp_CodeForDeletion);
-        this.getServiceData();
+        // this.getServiceData();
     }
 
     getIndexFromEmployees(emp_code: any) {
@@ -107,7 +108,8 @@ export class EmployeesComponent implements OnInit {
         }
         if (this.isUpdationEmployeeOn) {
             if (this.employeeDetails.emp_code) {
-                if (!this.empCodeValidation()) {
+                this.empCodeValidation()
+                if (this.emp_codeFound) {
                     this.validationMap.set('emp_code', "Emp code already exist")
                 }
             }
@@ -133,12 +135,13 @@ export class EmployeesComponent implements OnInit {
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.employeeDetails.email);
     }
     empCodeValidation() {
-        let value = this.serviceData.empCodeValidation(this.employeeDetails.emp_code)
-        if (value.length > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        this.serviceData.empCodeValidation(this.employeeDetails.emp_code).subscribe((data) => {
+            if (data) {
+                this.emp_codeFound = true;
+
+            } else {
+                this.emp_codeFound = false;
+            }
+        })
     }
 }

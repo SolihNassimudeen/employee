@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Employee } from '../shared/employeeData.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -249,10 +250,7 @@ export class ServiceService {
         { name: 'admin 4', position: 'Manager', username: 'user4', password: 1234 },
     ]
 
-
-
-
-    constructor() { }
+    constructor(private http: HttpClient) { }
     // dashboard
     addProject(projectName: any) {
         const newObject = { projectName: projectName, status: 'pending' }
@@ -283,19 +281,24 @@ export class ServiceService {
     }
 
     // employee
-    getEmployeedata(): Observable<any[]> {
-        return of(this.employeeData);
+    getEmployeedata(): Observable<any> {
+        return this.http.get('employee/employees')
     }
-    empCodeValidation(IdCode: any) {
-        return this.employeeData.filter((data) => data.emp_code === IdCode)
+    empCodeValidation(IdCode: any): Observable<any> {
+        return this.http.get(`employee/${IdCode}`);
     }
-    deleteEmployee(emp_code: any) {
-        const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
-        this.employeeData.splice(index, 1)
+    deleteEmployee(empCode: number): Observable<any> {
+        return this.http.delete('employee/itemDelete/' + empCode);
     }
-    getCountOfEmployees() {
-        return this.employeeData.length
-    }
+    // addEmployeedata(): Observable<any> {
+
+    //     return this.http.post()
+    // }
+
+    // deleteEmployee(emp_code: any) {
+    //     const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
+    //     this.employeeData.splice(index, 1)
+    // }
     getDataForUpdation(emp_code: any) {
         return this.employeeData.find(data => data.emp_code === emp_code)
     }
