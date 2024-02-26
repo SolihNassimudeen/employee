@@ -15,14 +15,7 @@ export class LoginComponent {
     constructor(private route: Router) { }
 
     login() {
-        if (this.username === 'solih') {
-            if (this.password === '1234') {
-                this.route.navigate(['/admin'])
-            } else {
-                this.errorMsg = 'Password Incorrect'
-            }
-        } else {
-            this.errorMsg = 'User not found'
-        }
+        this.username === 'solih' && this.password === '1234' ? this.route.navigate(['/admin']) : this.errorMsg = 'User not found';
     }
 }
+

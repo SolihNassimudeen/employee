@@ -12,7 +12,7 @@ span {
 }
 
 .activePageTag {
-    font-size: 10px;
+    font-size: 12px;
     color: #845ef7;
     font-weight: 600;
 
@@ -66,4 +66,32 @@ span {
 
 .btn_editColor:hover {
     box-shadow: 0 0 10px blue;
+}
+
+// modal 
+
+.form_div {
+    border: 1px solid #868e96;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.errorMsg {
+    font-size: 12px;
+    color: red;
+}
+
+//modal
+//***********
+.modal-dialog {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.modalCancel {
+    border: none;
+    padding: .5rem 1.5rem;
+    color: #edf2ff;
+    border-radius: 8px;
+    background-color: #f03e3e;
 }

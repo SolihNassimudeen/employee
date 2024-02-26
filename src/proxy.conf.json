@@ -3,10 +3,76 @@
         "target": "http://localhost:8080/",
         "secure": false
     },
-    "/employee/itemDelete/": {
+    "/employee/empCode/": {
         "target": "http://localhost:8080/",
-        "secure": false,
-        "changeOrigin": true,
-        "logLevel": "debug"
+        "secure": false
+    },
+    "/employee/employeeDelete/": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/employee/addEmployee": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/employee/updateEmployee/": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/employee/searchName": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/projects": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/pendingProject": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/addProject": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/updateProject/": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/completeCount": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/pendingCount": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/progressCount": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/deleteItem": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/adminpanel/adminCount": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/adminpanel/adminList": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/adminpanel/addAdmin": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/adminpanel/updateAdmin/": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/adminpanel/deleteAdmin": {
+        "target": "http://localhost:8080/",
+        "secure": false
     }
 }

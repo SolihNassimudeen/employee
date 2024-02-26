@@ -10,11 +10,7 @@ import { LeaveManagementComponent } from './leave-management/leave-management.co
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AdminCabinComponent } from './admin-cabin/admin-cabin.component';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
-// import { ChartModule } from 'angular-highcharts';
-
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +28,7 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         AdminRoutingModule,
         SharedModule,
-        // ChartModule
+        ReactiveFormsModule
     ]
 })
 export class AdminModule { }

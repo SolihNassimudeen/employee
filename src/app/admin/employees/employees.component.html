@@ -117,7 +117,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-2 gap-2">
                         <button class="modalCancel" #addModalcancel data-bs-dismiss="modal"
-                            (click)="modalCancel()">cancel</button>
+                            (click)="cancelModal()">cancel</button>
                         <button type=" submit" class="addNewEmployee" (click)="addNewEmployeeSubmit()">Submit</button>
                     </div>
                 </form>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-2 gap-2">
                         <button class="modalCancel" #updateModalcancel data-bs-dismiss="modal"
-                            (click)="modalCancel()">cancel</button>
+                            (click)="cancelModal()">cancel</button>
                         <button type=" submit" class="addNewEmployee" (click)="updateEmployeeSubmit()">Submit</button>
                     </div>
                 </form>
@@ -248,7 +248,7 @@
 </div>
 
 <section class="row mx-1 mt-3 SectionCard" *ngIf="!searchingName">
-    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of employeeArray">
+    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of employeeList">
         <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
                 <img class="employee_img rounded-circle" src="{{cardData.imgurl}}" alt="default employee image">
@@ -282,8 +282,8 @@
     </div>
 </section>
 
-<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeArray.length>0 && searchingName!==''">
-    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of searchEmployeeArray">
+<section class="row mx-1 mt-3 SectionCard" *ngIf="searchEmployeeList.length>0 && searchingName!==''">
+    <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of searchEmployeeList">
         <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
                 <img class="employee_img rounded-circle" src="{{cardData.imgurl}}" alt="default employee image">
@@ -316,6 +316,6 @@
         </div>
     </div>
 </section>
-<section *ngIf="searchEmployeeArray.length<1 && searchingName" class="d-flex mx-1 justify-content-center mt-5">
+<section *ngIf="searchEmployeeList.length<1 && searchingName" class="d-flex mx-1 justify-content-center mt-5">
     <p class="not_found">item not found....!</p>
 </section>

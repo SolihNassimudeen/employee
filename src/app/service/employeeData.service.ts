@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Employee } from '../shared/employeeData.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -8,240 +7,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceService {
 
-    public employeeData: Employee[] = [
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "solih",
-            "position": "web developer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 1,
-            "joiningdate": "01/02/2024",
-            "email": "shijdf@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "john",
-            "position": "software engineer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 2,
-            "joiningdate": "05/03/2023",
-            "email": "john@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "emma",
-            "position": "data analyst",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 3,
-            "joiningdate": "12/10/2022",
-            "email": "emma@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "alex",
-            "position": "frontend developer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 4,
-            "joiningdate": "09/05/2021",
-            "email": "alex@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "sara",
-            "position": "UI/UX designer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 5,
-            "joiningdate": "03/07/2020",
-            "email": "sara@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "michael",
-            "position": "backend developer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 6,
-            "joiningdate": "11/11/2019",
-            "email": "michael@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "olivia",
-            "position": "project manager",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 7,
-            "joiningdate": "08/04/2018",
-            "email": "olivia@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "william",
-            "position": "quality assurance",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 8,
-            "joiningdate": "02/12/2017",
-            "email": "william@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "emily",
-            "position": "systems analyst",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 9,
-            "joiningdate": "06/06/2016",
-            "email": "emily@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "daniel",
-            "position": "network administrator",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 10,
-            "joiningdate": "10/09/2015",
-            "email": "daniel@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "ava",
-            "position": "database administrator",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 11,
-            "joiningdate": "07/03/2014",
-            "email": "ava@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "james",
-            "position": "business analyst",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 12,
-            "joiningdate": "04/08/2013",
-            "email": "james@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "mia",
-            "position": "software tester",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 13,
-            "joiningdate": "01/01/2012",
-            "email": "mia@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "ethan",
-            "position": "IT support specialist",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 14,
-            "joiningdate": "09/11/2011",
-            "email": "ethan@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "ava",
-            "position": "business intelligence analyst",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 15,
-            "joiningdate": "05/05/2010",
-            "email": "ava@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "mason",
-            "position": "software developer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 16,
-            "joiningdate": "03/02/2009",
-            "email": "mason@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "harper",
-            "position": "technical support engineer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 17,
-            "joiningdate": "07/09/2008",
-            "email": "harper@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "logan",
-            "position": "data scientist",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 18,
-            "joiningdate": "12/12/2007",
-            "email": "logan@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "amelia",
-            "position": "IT consultant",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 19,
-            "joiningdate": "08/06/2006",
-            "email": "amelia@gmail.com"
-        },
-        {
-            "imgurl": "/assets/employeeProfile/default.png",
-            "name": "lucas",
-            "position": "software engineer",
-            "tag": "developer",
-            "management": "management",
-            "emp_code": 20,
-            "joiningdate": "02/01/2005",
-            "email": "lucas@gmail.com"
-        }
-    ]
-    public projectList: any[] = [
-        { projectName: 'Project 1', status: 'completed' },
-        { projectName: 'Project 2', status: 'progress' },
-        { projectName: 'Project 3', status: 'completed' },
-        { projectName: 'Project 4', status: 'pending' },
-        { projectName: 'Project 5', status: 'completed' },
-        { projectName: 'Project 6', status: 'progress' },
-        { projectName: 'Project 7', status: 'pending' },
-        { projectName: 'Project 8', status: 'completed' },
-        { projectName: 'Project 9', status: 'progress' },
-        { projectName: 'Project 10', status: 'pending' },
-        { projectName: 'Project 11', status: 'completed' },
-        { projectName: 'Project 12', status: 'progress' },
-        { projectName: 'Project 13', status: 'completed' },
-        { projectName: 'Project 14', status: 'pending' },
-        { projectName: 'Project 15', status: 'completed' },
-        { projectName: 'Project 16', status: 'progress' },
-        { projectName: 'Project 17', status: 'pending' },
-        { projectName: 'Project 18', status: 'completed' },
-        { projectName: 'Project 19', status: 'progress' },
-        { projectName: 'Project 20', status: 'pending' },
-        { projectName: 'Project 21', status: 'completed' },
-        { projectName: 'Project 22', status: 'progress' },
-        { projectName: 'Project 23', status: 'completed' },
-        { projectName: 'Project 24', status: 'pending' },
-        { projectName: 'Project 25', status: 'completed' },
-        { projectName: 'Project 26', status: 'progress' },
-        { projectName: 'Project 27', status: 'pending' },
-        { projectName: 'Project 28', status: 'completed' },
-        { projectName: 'Project 29', status: 'progress' },
-        { projectName: 'Project 30', status: 'pending' }
-    ]
     public adminList: any[] = [
         { name: 'solih', position: 'Employee', username: 'solih', password: 1234 },
         { name: 'admin 1', position: 'Employee', username: 'user1', password: 1234 },
@@ -252,32 +17,30 @@ export class ServiceService {
 
     constructor(private http: HttpClient) { }
     // dashboard
-    addProject(projectName: any) {
-        const newObject = { projectName: projectName, status: 'pending' }
-        this.projectList.push(newObject)
-        return "project added successfully"
+    getAllprojectList(): Observable<any> {
+        return this.http.get('/project/projects')
     }
-    completedProjectCount() {
-        const completedproject = this.projectList.filter((data) => data.status.includes('completed'))
-        return completedproject.length
+    addProject(projectName: any): Observable<any> {
+        const NEW_OBJECT = { projectname: projectName, status: 'pending' }
+        return this.http.post('/project/addProject', NEW_OBJECT)
     }
-    onProcessProjectCount() {
-        const onProcessProjectCount = this.projectList.filter((data) => data.status.includes('progress'))
-        return onProcessProjectCount.length
+    completedProjectCount(): Observable<any> {
+        return this.http.get('/project/completeCount')
     }
-    pendingProjectCount() {
-        const pendingProjectCount = this.projectList.filter((data) => data.status.includes('pending'))
-        return pendingProjectCount.length
+    onProcessProjectCount(): Observable<any> {
+        return this.http.get('/project/progressCount')
     }
-    pendingProject() {
-        return this.projectList.filter((data) => data.status.includes('pending'))
+    pendingProjectCount(): Observable<any> {
+        return this.http.get('/project/pendingCount')
     }
-    deletitemfromProjectlist(deleteIndex: number) {
-        this.projectList.splice(deleteIndex, 1)
+    pendingProject(): Observable<any> {
+        return this.http.get('/project/pendingProject')
     }
-    editProjectList(data: any, editIndex: any) {
-        this.projectList[editIndex] = data;
-        return null;
+    deletitemfromProjectlist(deleteslno: number): Observable<any> {
+        return this.http.delete(`/project/deleteItem/${deleteslno}`)
+    }
+    editProjectList(data: any, editIndex: any): Observable<any> {
+        return this.http.put(`/project/updateProject/${editIndex}`, data);
     }
 
     // employee
@@ -285,32 +48,35 @@ export class ServiceService {
         return this.http.get('employee/employees')
     }
     empCodeValidation(IdCode: any): Observable<any> {
-        return this.http.get(`employee/${IdCode}`);
+        return this.http.get(`employee/empCode/${IdCode}`);
     }
     deleteEmployee(empCode: number): Observable<any> {
-        return this.http.delete('employee/itemDelete/' + empCode);
+        return this.http.delete(`employee/employeeDelete/${empCode}`)
     }
-    // addEmployeedata(): Observable<any> {
-
-    //     return this.http.post()
-    // }
-
-    // deleteEmployee(emp_code: any) {
-    //     const index = this.employeeData.findIndex(obj => obj.emp_code === emp_code);
-    //     this.employeeData.splice(index, 1)
-    // }
-    getDataForUpdation(emp_code: any) {
-        return this.employeeData.find(data => data.emp_code === emp_code)
+    addEmployeedata(data: any): Observable<any> {
+        return this.http.post(`employee/addEmployee`, data)
     }
-    searchAnEmployee(name: string) {
-        return this.employeeData.filter((data) => data.name.includes(name))
+    getDataForUpdation(emp_code: any): Observable<any> {
+        return this.http.get(`employee/empCode/${emp_code}`);
+    }
+    setupdateEmployeedata(emp_code: number, data: any): Observable<any> {
+        return this.http.put(`/employee/updateEmployee/${emp_code}`, data)
+    }
+    searchAnEmployee(searchTerm: string): Observable<any> {
+        return this.http.get<any>('/employee/searchName', { params: { searchTerm } })
     }
 
     // admin
-    adminsCount() {
-        return this.adminList.length
+    adminsCount(): Observable<any> {
+        return this.http.get("/adminpanel/adminCount");
     }
-    getAdminDetails(): Observable<any[]> {
-        return of(this.adminList)
+    getAdminDetails(): Observable<any> {
+        return this.http.get("/adminpanel/adminList");
+    }
+    adminDelete(slno: number): Observable<any> {
+        return this.http.delete(`/adminpanel/deleteAdmin/${slno}`);
+    }
+    addAdmin(data: any): Observable<any> {
+        return this.http.post('/adminpanel/addAdmin', data);
     }
 }

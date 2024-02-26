@@ -11,16 +11,14 @@ export class EmployeesComponent implements OnInit {
 
     @ViewChild('addModalcancel') addModalcancel!: ElementRef;
     @ViewChild('updateModalcancel') updateModalcancel!: ElementRef;
-    employeeArray: Employee[] = [];
-    searchEmployeeArray: Employee[] = [];
+
+    employeeList: Employee[] = [];
+    searchEmployeeList: Employee[] = [];
     searchingName: string = '';
     employeeDetails: any = new Employee();
     validationMap = new Map();
     emp_CodeForDeletion: any;
     emp_Count: number | null = null;
-    isUpdationEmployeeOn = true;
-    emp_codeFound = true;
-
 
 
     constructor(public serviceData: ServiceService) { }
@@ -31,50 +29,49 @@ export class EmployeesComponent implements OnInit {
 
     getServiceData() {
         this.serviceData.getEmployeedata().subscribe(data => {
-            this.employeeArray = data;
-            this.emp_Count = this.employeeArray.length
+            this.employeeList = data;
+            this.emp_Count = this.employeeList.length
         });
     }
 
     searchAnEmployee() {
-        this.searchEmployeeArray = this.serviceData.searchAnEmployee(this.searchingName.trim());
+        this.serviceData.searchAnEmployee(this.searchingName.trim()).subscribe((data) => {
+            this.searchEmployeeList = data;
+        })
     }
 
     addNewEmployeeSubmit() {
-        this.validationMap.clear()
-        this.defaultImgPath()
-        this.validationCheck()
-        if (!this.validationMap.size) {
-            this.serviceData.employeeData.push(this.employeeDetails);
-            this.getServiceData();
-            (this.addModalcancel.nativeElement as HTMLButtonElement).click();
-            this.employeeDetails = new Employee;
+        this.validationMap.clear();
+        this.defaultImg();
+        this.validationCheck();
+        if (this.employeeDetails.emp_code) {
+            this.empCodeValidation();
         }
     }
 
     beforeUpdation(empCode: any) {
-        this.employeeDetails = this.serviceData.getDataForUpdation(empCode);
-        this.isUpdationEmployeeOn = false
+        this.serviceData.getDataForUpdation(empCode).subscribe((data) => {
+            this.employeeDetails = data;
+        })
     }
 
     updateEmployeeSubmit() {
-        this.validationMap.clear()
-        this.defaultImgPath()
-        this.validationCheck()
+        this.validationMap.clear();
+        this.defaultImg();
+        this.validationCheck();
         if (!this.validationMap.size) {
-            const index = this.getIndexFromEmployees(this.employeeDetails.emp_code)
-            this.serviceData.employeeData[index] = this.employeeDetails
-            this.getServiceData();
-            (this.updateModalcancel.nativeElement as HTMLButtonElement).click();
-            this.employeeDetails = new Employee;
-            this.isUpdationEmployeeOn = false;
+            this.serviceData.setupdateEmployeedata(this.employeeDetails.emp_code, this.employeeDetails).subscribe(() => {
+                this.getServiceData();
+                this.searchAnEmployee();
+                (this.updateModalcancel.nativeElement as HTMLButtonElement).click();
+                this.employeeDetails = new Employee;
+            })
         }
     }
 
-    modalCancel() {
+    cancelModal() {
         this.employeeDetails = new Employee;
         this.validationMap.clear();
-        this.isUpdationEmployeeOn = true;
     }
 
     beforeDeletionConformed(empCode: any) {
@@ -82,12 +79,10 @@ export class EmployeesComponent implements OnInit {
     }
 
     afterDeletionConformed() {
-        this.serviceData.deleteEmployee(this.emp_CodeForDeletion);
-        // this.getServiceData();
-    }
-
-    getIndexFromEmployees(emp_code: any) {
-        return this.serviceData.employeeData.findIndex(obj => obj.emp_code === emp_code)
+        this.serviceData.deleteEmployee(this.emp_CodeForDeletion).subscribe(() => {
+            this.getServiceData();
+            this.searchAnEmployee();
+        });
     }
 
     validationCheck() {
@@ -106,14 +101,6 @@ export class EmployeesComponent implements OnInit {
         if (!this.employeeDetails.emp_code) {
             this.validationMap.set('emp_code', "Please enter a employee code.");
         }
-        if (this.isUpdationEmployeeOn) {
-            if (this.employeeDetails.emp_code) {
-                this.empCodeValidation()
-                if (this.emp_codeFound) {
-                    this.validationMap.set('emp_code', "Emp code already exist")
-                }
-            }
-        }
         if (!this.employeeDetails.joiningdate) {
             this.validationMap.set('joiningdate', "Please select  joining Date.");
         }
@@ -126,7 +113,7 @@ export class EmployeesComponent implements OnInit {
             this.validationMap.set("email", "Please enter a email");
         }
     }
-    defaultImgPath() {
+    defaultImg() {
         if (!this.employeeDetails.imgurl) {
             this.employeeDetails.imgurl = '/assets/employeeProfile/default.png'
         }
@@ -137,10 +124,15 @@ export class EmployeesComponent implements OnInit {
     empCodeValidation() {
         this.serviceData.empCodeValidation(this.employeeDetails.emp_code).subscribe((data) => {
             if (data) {
-                this.emp_codeFound = true;
-
+                this.validationMap.set('emp_code', "Emp code already exist")
             } else {
-                this.emp_codeFound = false;
+                if (!this.validationMap.size) {
+                    this.serviceData.addEmployeedata(this.employeeDetails).subscribe(() => {
+                        this.getServiceData();
+                        (this.addModalcancel.nativeElement as HTMLButtonElement).click();
+                        this.employeeDetails = new Employee;
+                    })
+                }
             }
         })
     }

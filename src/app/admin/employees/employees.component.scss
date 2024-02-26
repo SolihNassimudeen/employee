@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 label {
     font-size: .8rem;
     font-weight: bold;
@@ -12,7 +18,7 @@ input::placeholder {
 }
 
 .activePageTag {
-    font-size: 10px;
+    font-size: 12px;
     color: #845ef7;
     font-weight: 600;
 

@@ -51,8 +51,8 @@
             <h2>Pending Projects</h2>
             <div class="boxShadowDashboard pendingProjectContainer p-lg-2">
                 <div class="d-flex justify-content-between align-items-center projectContainer"
-                    *ngFor="let project of pendingProjectArray">
-                    <p class="m-0">{{project.projectName}}</p>
+                    *ngFor="let project of pendingProjectList">
+                    <p class="m-0">{{project.projectname}}</p>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
             <div class="boxShadowDashboard totalProjectContainer p-lg-2">
                 <div class="d-flex justify-content-between align-items-center projectContainer"
                     *ngFor="let project of projectlist;let index=index">
-                    <p class="m-0">{{project.projectName}}</p>
+                    <p class="m-0">{{project.projectname}}</p>
                     <div class="d-flex gap-3">
                         <div class="d-flex flex-column align-items-center gap-1">
                             <label class=" radioLabel" for="completed Radio button">completed</label>
@@ -104,12 +104,12 @@
                         </div>
                     </div>
                     <div class="d-flex gap-3">
-                        <button class="btn_editColor card_btnStructure" (click)="totalProjectEdit(index)"
+                        <button class="btn_editColor card_btnStructure" (click)="totalProjectEdit(index,project.slno)"
                             *ngIf="editedIndex!==index"><i class="bi bi-pencil-fill"></i></button>
                         <button *ngIf="editedIndex===index" class="btn_editColor card_btnStructure"
-                            (click)="submitAfterEdit()"><i class="bi bi-floppy"></i></button>
+                            (click)="submitEdit()"><i class="bi bi-floppy"></i></button>
                         <button class="btn_deleteColor card_btnStructure" data-bs-toggle="modal"
-                            data-bs-target="#projectListDeleteModal" (click)="deleteTotalProjectItem(index)"><i
+                            data-bs-target="#projectListDeleteModal" (click)="deleteTotalProjectItem(project.slno)"><i
                                 class="bi bi-trash-fill"></i></button>
                     </div>
                 </div>
