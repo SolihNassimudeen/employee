@@ -1,4 +1,5 @@
-import { AfterContentInit, AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart, registerables, TooltipItem } from 'node_modules/chart.js';
 import { ServiceService } from 'src/app/service/employeeData.service';
@@ -8,10 +9,20 @@ Chart.register(...registerables);
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({ opacity: 0 })),
+            transition(':enter, :leave', [
+                animate(3000)
+            ]),
+        ]),
+    ]
 })
+
 export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
 
+    isShowAlert = false;
     doughnutChart: any;
     completedProjectCount = 0;
     onProcessProjectCount = 0;
@@ -31,12 +42,15 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
         this.pendingProjects();
     }
 
-    ngOnDestroy(): void {
-        this.doughnutChart.destroy();
-    }
-
     ngAfterContentInit(): void {
         this.semiCirclechart(this.completedProjectCount, this.onProcessProjectCount, this.pendingProjectCount);
+    }
+
+    showAlertMessage() {
+        this.isShowAlert = true;
+        setTimeout(() => {
+            this.isShowAlert = false;
+        }, 3000);
     }
 
     pendingProjects() {
@@ -90,7 +104,8 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                 this.getProjectList();
                 this.doughnutChart.destroy();
                 this.semiCirclechart(this.completedProjectCount, this.onProcessProjectCount, this.pendingProjectCount)
-                this.pendingProjects()
+                this.pendingProjects();
+                this.showAlertMessage();
             })
         }
     }
@@ -110,6 +125,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                 this.doughnutChart.destroy();
                 this.semiCirclechart(this.completedProjectCount, this.onProcessProjectCount, this.pendingProjectCount);
                 this.pendingProjects();
+                this.showAlertMessage();
             })
         }
     }
@@ -125,7 +141,8 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                 this.getProjectList();
                 this.doughnutChart.destroy();
                 this.semiCirclechart(this.completedProjectCount, this.onProcessProjectCount, this.pendingProjectCount)
-                this.pendingProjects()
+                this.pendingProjects();
+                this.showAlertMessage();
             })
         }
     }
@@ -161,5 +178,9 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                 aspectRatio: 2,
             }
         });
+    }
+
+    ngOnDestroy(): void {
+        this.doughnutChart.destroy();
     }
 }

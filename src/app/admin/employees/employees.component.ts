@@ -1,17 +1,28 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from 'src/app/service/employeeData.service';
 import { Employee } from '../../shared/employeeData.interface';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'app-employees',
     templateUrl: './employees.component.html',
-    styleUrls: ['./employees.component.scss']
+    styleUrls: ['./employees.component.scss'],
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({ opacity: 0 })),
+            transition(':enter, :leave', [
+                animate(3000)
+            ]),
+        ]),
+    ]
 })
+
 export class EmployeesComponent implements OnInit {
 
     @ViewChild('addModalcancel') addModalcancel!: ElementRef;
     @ViewChild('updateModalcancel') updateModalcancel!: ElementRef;
 
+    isShowAlert = false;
     employeeList: Employee[] = [];
     searchEmployeeList: Employee[] = [];
     searchingName: string = '';
@@ -32,6 +43,13 @@ export class EmployeesComponent implements OnInit {
             this.employeeList = data;
             this.emp_Count = this.employeeList.length
         });
+    }
+
+    showAlertMessage() {
+        this.isShowAlert = true;
+        setTimeout(() => {
+            this.isShowAlert = false;
+        }, 3000);
     }
 
     searchAnEmployee() {
@@ -65,6 +83,7 @@ export class EmployeesComponent implements OnInit {
                 this.searchAnEmployee();
                 (this.updateModalcancel.nativeElement as HTMLButtonElement).click();
                 this.employeeDetails = new Employee;
+                this.showAlertMessage();
             })
         }
     }
@@ -82,6 +101,7 @@ export class EmployeesComponent implements OnInit {
         this.serviceData.deleteEmployee(this.emp_CodeForDeletion).subscribe(() => {
             this.getServiceData();
             this.searchAnEmployee();
+            this.showAlertMessage();
         });
     }
 
@@ -131,6 +151,7 @@ export class EmployeesComponent implements OnInit {
                         this.getServiceData();
                         (this.addModalcancel.nativeElement as HTMLButtonElement).click();
                         this.employeeDetails = new Employee;
+                        this.showAlertMessage();
                     })
                 }
             }

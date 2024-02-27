@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/service/employeeData.service';
@@ -5,13 +6,23 @@ import { ServiceService } from 'src/app/service/employeeData.service';
 @Component({
     selector: 'app-admin-cabin',
     templateUrl: './admin-cabin.component.html',
-    styleUrls: ['./admin-cabin.component.scss']
+    styleUrls: ['./admin-cabin.component.scss'],
+    animations: [
+        trigger('fadeInOut', [
+            state('void', style({ opacity: 0 })),
+            transition(':enter, :leave', [
+                animate(3000)
+            ]),
+        ]),
+    ]
 })
+
 export class AdminCabinComponent implements OnInit {
 
     @ViewChild('addModalcancel') addModalcancel!: ElementRef;
     @ViewChild('upadateAdminModalcancel') upadateAdminModalcancel!: ElementRef;
 
+    isShowAlert = false;
     adminList!: FormGroup;
     adminCount = 0;
     adminDetailsList: any[] = []
@@ -47,6 +58,13 @@ export class AdminCabinComponent implements OnInit {
         })
     }
 
+    showAlertMessage() {
+        this.isShowAlert = true;
+        setTimeout(() => {
+            this.isShowAlert = false;
+        }, 3000);
+    }
+
     addNewAdmin() {
         this.isSubmitted = true;
         if (this.adminList.valid && this.adminCount < 6) {
@@ -56,6 +74,7 @@ export class AdminCabinComponent implements OnInit {
                 (this.addModalcancel.nativeElement as HTMLButtonElement).click();
                 this.adminList.reset();
                 this.isSubmitted = false;
+                this.showAlertMessage();
             })
         } else {
             alert("entered data not in valid form or admin space is full")
@@ -79,6 +98,7 @@ export class AdminCabinComponent implements OnInit {
                 this.selectedSlno = -1;
                 this.isSubmitted = false;
                 this.adminList.reset();
+                this.showAlertMessage();
             })
         }
     }
@@ -93,6 +113,7 @@ export class AdminCabinComponent implements OnInit {
                 this.selectedSlno = -1;
                 this.getAdminList();
                 this.getAdminCount();
+                this.showAlertMessage();
             })
         } else {
             alert("It is mandatory to have at least one admin")

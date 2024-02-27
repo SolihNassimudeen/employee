@@ -1,5 +1,11 @@
+<div class="d-flex justify-content-center">
+    <div *ngIf="isShowAlert" class="alert alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your action was successful.
+    </div>
+</div>
+
 <section class="px-lg-3 px-md-2">
-    <div class="pt-3 pb-3">
+    <div class="pt-md-2 pt-lg-3 pb-md-2 pb-lg-3">
         <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
                 class="activePageTag">Dashboard</span></p>
     </div>
@@ -25,11 +31,12 @@
     </div>
 </div>
 
-<div class="row mx-3">
-    <div class="col">
+<div class="row mx-md-1 mx-lg-3">
+    <div class="col-md-6">
         <div class="mx-1">
             <h2 class="m-0">Project Metrics</h2>
-            <div class="d-flex gap-5 my-3 align-items-center doughnutChartDiv boxShadowDashboard">
+            <div
+                class="d-flex gap-md-2 gap-lg-3 gap-xl-5 my-md-2 my-lg-3 align-items-center doughnutChartDiv boxShadowDashboard">
                 <div class="doughnutContainer ">
                     <canvas id="semiCircleDoughnut"></canvas>
                 </div>
@@ -59,31 +66,27 @@
 
         </div>
     </div>
-    <div class="col">
-        <div>
-            <h2>New Additions</h2>
-            <div class="boxShadowDashboard p-lg-3">
-                <form>
-                    <div>
-                        <label class="mb-1" for="projectName"><strong> Project newly committed</strong></label>
-                        <div class="d-flex gap-md-1 gap-lg-2 ">
-                            <input type=" text" class="form-control" placeholder="New project name"
-                                [(ngModel)]="projectName" name="projectName">
-                            <button class="addNewProject" (click)="addNewProject()" type="submit">Commit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+    <div class="col-md-6">
+        <h2>New Additions</h2>
+        <div class="boxShadowDashboard p-md-3">
+            <form>
+                <label class="mb-1" for="projectName"><strong> Project newly committed</strong></label>
+                <div class="d-flex gap-md-1 gap-lg-2 ">
+                    <input type=" text" class="form-control" placeholder="New project name" [(ngModel)]="projectName"
+                        name="projectName">
+                    <button class="addNewProject" (click)="addNewProject()" type="submit">Commit</button>
+                </div>
+            </form>
         </div>
         <div class="mt-4">
             <div class="d-flex pe-2">
                 <h2>Total Projects</h2>
             </div>
             <div class="boxShadowDashboard totalProjectContainer p-lg-2">
-                <div class="d-flex justify-content-between align-items-center projectContainer"
+                <div class="d-flex p-1 justify-content-between align-items-center projectContainer"
                     *ngFor="let project of projectlist;let index=index">
                     <p class="m-0">{{project.projectname}}</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex flex-md-column flex-lg-row gap-3">
                         <div class="d-flex flex-column align-items-center gap-1">
                             <label class=" radioLabel" for="completed Radio button">completed</label>
                             <input [disabled]="editedIndex!==index" id="projectStatsRadio1" class="form-check-input"

@@ -1,3 +1,12 @@
+.alert {
+    position: fixed;
+    top: 20px;
+    z-index: 1000;
+    background-color: #aa8dff;
+    border: 1px solid #845ef7;
+    color: #fff;
+}
+
 //header Tag
 .activePageArrow {
     color: #adb5bd;
