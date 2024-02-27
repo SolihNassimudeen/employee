@@ -1,7 +1,8 @@
 import { AfterContentInit, AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Chart, registerables, TooltipItem } from 'node_modules/chart.js';
-import { Observable } from 'rxjs';
 import { ServiceService } from 'src/app/service/employeeData.service';
+
 Chart.register(...registerables);
 
 @Component({
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
     editedSlno: number | null = null;
     deleteItemSlno = -1;
 
-    constructor(public serviceData: ServiceService) { }
+    constructor(public serviceData: ServiceService, private route: Router) { }
 
     ngOnInit(): void {
         this.getProjectList();

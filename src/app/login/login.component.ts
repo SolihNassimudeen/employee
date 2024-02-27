@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceService } from '../service/employeeData.service';
 
 @Component({
     selector: 'app-login',
@@ -12,10 +13,17 @@ export class LoginComponent {
     password: string = ''
     errorMsg: string = ''
 
-    constructor(private route: Router) { }
+    constructor(private route: Router, private dataService: ServiceService) { }
 
     login() {
-        this.username === 'solih' && this.password === '1234' ? this.route.navigate(['/admin']) : this.errorMsg = 'User not found';
+        this.dataService.loginConformation(this.username, this.password).subscribe((conformation) => {
+            if (conformation) {
+                this.route.navigate(['/admin'])
+            } else {
+                this.errorMsg = 'Admin not found'
+            }
+        })
     }
+
 }
 

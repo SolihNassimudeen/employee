@@ -67,6 +67,13 @@ export class ServiceService {
     }
 
     // admin
+    loginConformation(username: string, password: string): Observable<any> {
+        const LOGINDATA: any = {
+            username: username,
+            password: password
+        }
+        return this.http.post('/adminpanel/login', LOGINDATA);
+    }
     adminsCount(): Observable<any> {
         return this.http.get("/adminpanel/adminCount");
     }
@@ -78,5 +85,11 @@ export class ServiceService {
     }
     addAdmin(data: any): Observable<any> {
         return this.http.post('/adminpanel/addAdmin', data);
+    }
+    getAnAdmin(slno: number): Observable<any> {
+        return this.http.get(`/adminpanel/adminData/${slno}`);
+    }
+    updateAnAdmin(slno: number, data: any): Observable<any> {
+        return this.http.put(`/adminpanel/updateAdmin/${slno}`, data);
     }
 }
