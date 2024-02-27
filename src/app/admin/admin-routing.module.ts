@@ -6,10 +6,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LeaveManagementComponent } from './leave-management/leave-management.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AdminCabinComponent } from './admin-cabin/admin-cabin.component';
+import { LoginGuard } from '../Guard/LoginGuard';
 
 const routes: Routes = [
     {
-        path: '', component: AdminComponent, children: [
+        path: '', component: AdminComponent, canActivate: [LoginGuard], children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
             { path: 'employees', component: EmployeesComponent },
