@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+declare var gapi: any;
+
 @Injectable({
     providedIn: 'root'
 })
@@ -92,4 +94,11 @@ export class ServiceService {
     updateAnAdmin(slno: number, data: any): Observable<any> {
         return this.http.put(`/adminpanel/updateAdmin/${slno}`, data);
     }
+
+    //leave management
+
+    getHolidays(): Observable<any> {
+        return this.http.get('https://www.googleapis.com/calendar/v3/calendars/en.indian%23holiday%40group.v.calendar.google.com/events?key=AIzaSyCJr-6IzjWAhQg0bhLvl3-L1kdJfqI34lI');
+    }
+
 }

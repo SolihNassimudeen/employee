@@ -1,1 +1,53 @@
-<app-comming-soon></app-comming-soon>
+<section>
+    <div class="pt-3 pb-3">
+        <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
+                class="activePageTag">Leave Management</span></p>
+    </div>
+</section>
+<section class="leave_managementSection w-100">
+    <div class="row gap-2 m-0">
+        <div class="col p-3 d-flex flex-column justify-content-center">
+            <div class=" d-flex flex-column align-items-center">
+                <h2><strong>Company Leave Management Policy</strong></h2>
+                <p class="text-justify">This leave management policy outlines the procedures and guidelines for
+                    requesting, approving, and
+                    managing leaves for all employees of [Company Name]. This policy aims to promote fairness,
+                    consistency,
+                    and efficiency in managing employee leaves while ensuring the smooth operation of the organization.
+                </p>
+            </div>
+            <h3><strong>Types of Leave</strong></h3>
+            <p><strong>Annual Leave</strong> : Annual leave is granted to employees for rest, relaxation, and personal
+                pursuits. The number of annual leave days allocated varies based on the employee's length of service and
+                position within the company.</p>
+
+            <p><strong>Sick Leave</strong> : Sick leave is provided to employees who are unable to perform their duties
+                due
+                to illness, injury, or medical appointments. The duration and requirements for sick leave are outlined
+                in accordance with local labor laws and company regulations.</p>
+
+            <p><strong>Maternity/Paternity Leave</strong> : Maternity and paternity leave are provided to employees
+                following the birth or adoption of a child. The duration and eligibility criteria for maternity and
+                paternity leave adhere to legal requirements and company policies.</p>
+
+            <p><strong>Unpaid Leave</strong> : Unpaid leave may be granted to employees for personal reasons or
+                circumstances not covered by other types of leave. Unpaid leave is subject to approval by the employee's
+                supervisor and HR department.</p>
+        </div>
+        <div class="col-lg-5 p-2">
+            <div class="holiday_section p-3">
+                <h2>Upcoming Public Holidays</h2>
+                <hr>
+                <div *ngFor="let data of holidayList | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                    <div class="d-flex justify-content-between">
+                        <p>{{data.start.date}}</p>
+                        <p><strong>{{data.summary}}</strong></p>
+                    </div>
+                </div>
+                <mat-paginator class="paginator_container" (page)="handlePageEvent($event)"
+                    [length]="holidayList.length" [pageSize]="pageSize" [pageIndex]="pageIndex">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</section>

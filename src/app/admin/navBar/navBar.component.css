@@ -1,3 +1,6 @@
+.sideNav{
+    height: 100vh;
+}
 .active{
     background-color: #353941;
     border: none;

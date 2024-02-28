@@ -11,6 +11,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { AdminCabinComponent } from './admin-cabin/admin-cabin.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CommonModule,
         AdminRoutingModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatPaginatorModule,
     ]
 })
 export class AdminModule { }
