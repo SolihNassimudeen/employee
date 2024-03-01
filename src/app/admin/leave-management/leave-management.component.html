@@ -13,17 +13,22 @@
                     requesting, approving, and
                     managing leaves for all employees of [Company Name]. This policy aims to promote fairness,
                     consistency,
-                    and efficiency in managing employee leaves while ensuring the smooth operation of the organization.
+                    and efficiency in managing employee leaves while ensuring the smooth operation of the
+                    organization.
                 </p>
             </div>
             <h3><strong>Types of Leave</strong></h3>
-            <p><strong>Annual Leave</strong> : Annual leave is granted to employees for rest, relaxation, and personal
-                pursuits. The number of annual leave days allocated varies based on the employee's length of service and
+            <p><strong>Annual Leave</strong> : Annual leave is granted to employees for rest, relaxation, and
+                personal
+                pursuits. The number of annual leave days allocated varies based on the employee's length of service
+                and
                 position within the company.</p>
 
-            <p><strong>Sick Leave</strong> : Sick leave is provided to employees who are unable to perform their duties
+            <p><strong>Sick Leave</strong> : Sick leave is provided to employees who are unable to perform their
+                duties
                 due
-                to illness, injury, or medical appointments. The duration and requirements for sick leave are outlined
+                to illness, injury, or medical appointments. The duration and requirements for sick leave are
+                outlined
                 in accordance with local labor laws and company regulations.</p>
 
             <p><strong>Maternity/Paternity Leave</strong> : Maternity and paternity leave are provided to employees
@@ -31,22 +36,27 @@
                 paternity leave adhere to legal requirements and company policies.</p>
 
             <p><strong>Unpaid Leave</strong> : Unpaid leave may be granted to employees for personal reasons or
-                circumstances not covered by other types of leave. Unpaid leave is subject to approval by the employee's
+                circumstances not covered by other types of leave. Unpaid leave is subject to approval by the
+                employee's
                 supervisor and HR department.</p>
         </div>
         <div class="col-lg-5 p-2">
             <div class="holiday_section p-3">
                 <h2>Upcoming Public Holidays</h2>
                 <hr>
-                <div *ngFor="let data of holidayList | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                <!-- <div *ngFor="let data of holidayList | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize"> -->
+                <div *ngFor="let data of paginatedItems | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
                     <div class="d-flex justify-content-between">
                         <p>{{data.start.date}}</p>
                         <p><strong>{{data.summary}}</strong></p>
                     </div>
                 </div>
-                <mat-paginator class="paginator_container" (page)="handlePageEvent($event)"
-                    [length]="holidayList.length" [pageSize]="pageSize" [pageIndex]="pageIndex">
-                </mat-paginator>
+                <!-- <mat-paginator class="paginator_container" (page)="handlePageEvent($event)"
+                        [length]="holidayList.length" [pageSize]="pageSize" [pageIndex]="pageIndex">
+                    </mat-paginator> -->
+                <app-paginator [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                    (pageChange)="loadData($event)"></app-paginator>
+
             </div>
         </div>
     </div>

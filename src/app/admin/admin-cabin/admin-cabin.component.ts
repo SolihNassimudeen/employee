@@ -123,5 +123,6 @@ export class AdminCabinComponent implements OnInit {
     cancelModal() {
         this.isSubmitted = false;
         this.selectedSlno - 1;
+        this.adminList.reset();
     }
 }

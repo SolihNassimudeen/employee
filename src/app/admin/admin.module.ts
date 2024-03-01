@@ -12,6 +12,7 @@ import { AdminCabinComponent } from './admin-cabin/admin-cabin.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         DashboardComponent,
         LeaveManagementComponent,
         AttendanceComponent,
-        AdminCabinComponent
+        AdminCabinComponent,
+        LoaderComponent
     ],
     imports: [
         FormsModule,

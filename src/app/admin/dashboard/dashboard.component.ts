@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
     editedSlno: number | null = null;
     deleteItemSlno = -1;
 
-    constructor(public serviceData: ServiceService, private route: Router) { }
+    constructor(public serviceData: ServiceService) { }
 
     ngOnInit(): void {
         this.getProjectList();

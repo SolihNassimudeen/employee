@@ -1,0 +1,23 @@
+<div class="paginationDiv">
+    <div class="buttonDiv">
+        <button (click)="goToFirstPage()" class="paginationBtn"><i class="bi bi-skip-backward-fill"></i></button>
+        <button (click)="previousPage()" class="paginationBtn"><i class="bi bi-caret-left-fill"></i></button>
+    </div>
+    <!-- <ng-container *ngFor="let pageNumber of getPageNumbers()">
+        <button (click)="goToPage(pageNumber)" [class.active]="pageNumber === currentPage">{{ pageNumber }}</button>
+    </ng-container> -->
+    <div class="buttonDiv">
+        <button *ngIf="(firstButton>0)" (click)="goToPage(firstButton)" class="paginationBtn">{{firstButton}}</button>
+        <button *ngIf="(secondButton>0)" (click)="goToPage(secondButton)"
+            class="paginationBtn">{{secondButton}}</button>
+        <button (click)="goToPage(activeButton)" class="paginationBtnActive">{{activeButton}}</button>
+        <button *ngIf="(fourthButton<=getTotalPages())" (click)="goToPage(fourthButton)"
+            class="paginationBtn">{{fourthButton}}</button>
+        <button *ngIf="(fifthButton<=getTotalPages())" (click)="goToPage(fifthButton)"
+            class="paginationBtn">{{fifthButton}}</button>
+    </div>
+    <div class="buttonDiv">
+        <button (click)="nextPage()" class="paginationBtn"><i class="bi bi-caret-right-fill"></i></button>
+        <button (click)="goToLastPage()" class="paginationBtn"><i class="bi bi-skip-forward-fill"></i></button>
+    </div>
+</div>

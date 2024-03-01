@@ -14,19 +14,29 @@ export class LeaveManagementComponent implements OnInit {
   holidayList: any[] = [];
   pageSize: number = 15;
   pageIndex: number = 0;
+  totalItems: number = 0;
+  itemsPerPage = 15;
+  paginatedItems: any[] = [];
 
   constructor(private dataService: ServiceService) { }
 
   ngOnInit(): void {
     this.getHolidays();
-    this.setPaginator();
+    // this.setPaginator();
   }
 
-  setPaginator() {
-    this.paginator.page.subscribe((event: PageEvent) => {
-      this.pageSize = event.pageSize;
-      this.pageIndex = event.pageIndex;
-    });
+  // setPaginator() {
+  //   this.paginator.page.subscribe((event: PageEvent) => {
+  //     this.pageSize = event.pageSize;
+  //     this.pageIndex = event.pageIndex;
+  //   });
+  // }
+
+  loadData(page: number): void {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedItems = this.holidayList.slice(startIndex, endIndex);
+    console.log('paginated items list : ' + this.paginatedItems);
   }
 
   handlePageEvent(event: PageEvent): void {
@@ -42,6 +52,9 @@ export class LeaveManagementComponent implements OnInit {
         const itemStartDate = new Date(item.start.date).toISOString();
         return itemStartDate >= itemDate;
       });
+      this.loadData(1);
+      this.totalItems = this.holidayList.length;
+
     })
   }
 }

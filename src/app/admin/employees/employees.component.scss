@@ -7,6 +7,15 @@ input::placeholder {
     font-size: .8rem;
 }
 
+.alert {
+    position: fixed;
+    top: 20px;
+    z-index: 1000;
+    background-color: #aa8dff;
+    border: 1px solid #845ef7;
+    color: #fff;
+}
+
 .activePageArrow {
     color: #adb5bd;
 }
