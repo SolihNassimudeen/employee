@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, of, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 declare var gapi: any;
 
@@ -74,6 +74,7 @@ export class ServiceService {
             username: username,
             password: password
         }
+        console.log(LOGINDATA);
         return this.http.post('/adminpanel/login', LOGINDATA);
     }
     adminsCount(): Observable<any> {
@@ -100,5 +101,4 @@ export class ServiceService {
     getHolidays(): Observable<any> {
         return this.http.get('https://www.googleapis.com/calendar/v3/calendars/en.indian%23holiday%40group.v.calendar.google.com/events?key=AIzaSyCJr-6IzjWAhQg0bhLvl3-L1kdJfqI34lI');
     }
-
 }

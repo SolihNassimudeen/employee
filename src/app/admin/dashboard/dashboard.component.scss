@@ -157,3 +157,12 @@
 .totalProjectContainer::-webkit-scrollbar-thumb:active {
     background: #dbe4ff;
 }
+
+.radioStyle {
+    opacity: 1;
+    border: 1px solid #845ef7;
+}
+
+.activeRadioStyle {
+    border-color: red;
+}

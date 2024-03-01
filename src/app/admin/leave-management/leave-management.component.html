@@ -44,16 +44,12 @@
             <div class="holiday_section p-3">
                 <h2>Upcoming Public Holidays</h2>
                 <hr>
-                <!-- <div *ngFor="let data of holidayList | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize"> -->
                 <div *ngFor="let data of paginatedItems | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
                     <div class="d-flex justify-content-between">
                         <p>{{data.start.date}}</p>
                         <p><strong>{{data.summary}}</strong></p>
                     </div>
                 </div>
-                <!-- <mat-paginator class="paginator_container" (page)="handlePageEvent($event)"
-                        [length]="holidayList.length" [pageSize]="pageSize" [pageIndex]="pageIndex">
-                    </mat-paginator> -->
                 <app-paginator [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
                     (pageChange)="loadData($event)"></app-paginator>
 

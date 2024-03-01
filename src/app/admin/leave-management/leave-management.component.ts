@@ -22,21 +22,12 @@ export class LeaveManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHolidays();
-    // this.setPaginator();
   }
-
-  // setPaginator() {
-  //   this.paginator.page.subscribe((event: PageEvent) => {
-  //     this.pageSize = event.pageSize;
-  //     this.pageIndex = event.pageIndex;
-  //   });
-  // }
 
   loadData(page: number): void {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedItems = this.holidayList.slice(startIndex, endIndex);
-    console.log('paginated items list : ' + this.paginatedItems);
   }
 
   handlePageEvent(event: PageEvent): void {

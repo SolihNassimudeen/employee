@@ -10,9 +10,9 @@ import { AuthService } from '../Guard/AuthService';
 })
 export class LoginComponent implements OnInit {
 
-    username: string = ''
-    password: string = ''
-    errorMsg: string = ''
+    adminname: string = '';
+    password: string = '';
+    errorMsg: string = '';
 
     constructor(private route: Router, private dataService: ServiceService, private authService: AuthService) { }
 
@@ -21,15 +21,20 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.dataService.loginConformation(this.username, this.password).subscribe((conformation) => {
-            if (conformation) {
-                this.authService.login();
-                this.route.navigate(['/admin'])
-            } else {
-                this.errorMsg = 'Admin not found'
-            }
-        })
+        if (this.adminname && this.password) {
+            this.dataService.loginConformation(this.adminname, this.password).subscribe((conformation) => {
+                if (conformation.message === 'User Found') {
+                    this.authService.login();
+                    this.route.navigate(['/admin'])
+                } else if (conformation.message === 'Incorrect Password') {
+                    this.errorMsg = conformation.message;
+                } else {
+                    this.errorMsg = 'User not found';
+                }
+            });
+        } else {
+            this.errorMsg = "please fill both Admin Name & Password"
+        }
     }
-
 }
 
