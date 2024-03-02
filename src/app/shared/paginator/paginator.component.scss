@@ -2,21 +2,22 @@
     display: flex;
     padding: 8px 16px;
     justify-content: space-around;
-    border-radius: 30px;
-    border: 2px solid #845ef7;
+    border-radius: 10px;
+    background-color: #845ef7;
 }
 
 .paginationBtn {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid #845ef7;
-    color: #845ef7;
+    border: 1px solid #f3effe;
+    color: #f3effe;
+    background-color: #845ef7;
 }
 
 .paginationBtn:hover {
-    color: #f3effe;
-    background-color: #845ef7;
+    color: #845ef7;
+    background-color: #f3effe;
 }
 
 .paginationBtnActive {
@@ -24,8 +25,8 @@
     height: 30px;
     border-radius: 50%;
     border: 1px solid #845ef7;
-    color: #f3effe;
-    background-color: #845ef7;
+    color: #845ef7;
+    background-color: #f3effe;
 }
 
 .buttonDiv {

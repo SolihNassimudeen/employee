@@ -30,3 +30,19 @@
     background-color: #845ef7;
     border-radius: 30px;
 }
+
+.paginationSearch {
+    height: 32px;
+    border: 1px solid #845ef782;
+    border-radius: 11px;
+    padding: 5px;
+}
+
+.paginationSearch::placeholder {
+    color: #999;
+}
+
+.notfound {
+    color: red;
+    text-align: center;
+}

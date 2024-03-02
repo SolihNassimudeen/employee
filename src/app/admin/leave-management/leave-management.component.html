@@ -42,18 +42,39 @@
         </div>
         <div class="col-lg-5 p-2">
             <div class="holiday_section p-3">
-                <h2>Upcoming Public Holidays</h2>
-                <hr>
-                <div *ngFor="let data of paginatedItems | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
-                    <div class="d-flex justify-content-between">
-                        <p>{{data.start.date}}</p>
-                        <p><strong>{{data.summary}}</strong></p>
-                    </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="m-0">Upcoming Public Holidays</h2>
+                    <form>
+                        <input type=" search" class="paginationSearch" [(ngModel)]="searchingData" name="searchingData"
+                            placeholder="search holidays..." (ngModelChange)="searchHoliday()">
+                    </form>
                 </div>
-                <app-paginator [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
-                    (pageChange)="loadData($event)"></app-paginator>
-
+                <hr>
+                <div *ngIf="!searchingData">
+                    <div *ngFor="let data of paginatedItems | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                        <div class="d-flex justify-content-between">
+                            <p>{{data.start.date}}</p>
+                            <p><strong>{{data.summary}}</strong></p>
+                        </div>
+                    </div>
+                    <app-paginator [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                        (pageChange)="loadData($event)"></app-paginator>
+                </div>
+                <div *ngIf="searchItems.length>0 && searchingData">
+                    <div *ngFor="let data of searchItems | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize">
+                        <div class="d-flex justify-content-between">
+                            <p>{{data.start.date}}</p>
+                            <p><strong>{{data.summary}}</strong></p>
+                        </div>
+                    </div>
+                    <app-paginator [totalItems]="totalSearchItems" [itemsPerPage]="itemsPerPage"
+                        (pageChange)="searchData($event)"></app-paginator>
+                </div>
+                <div *ngIf="searchItems.length==0 && searchingData" class="pt-3">
+                    <p class="notfound">Item not found</p>
+                </div>
             </div>
+
         </div>
     </div>
 </section>

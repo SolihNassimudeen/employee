@@ -17,6 +17,9 @@ export class LeaveManagementComponent implements OnInit {
   totalItems: number = 0;
   itemsPerPage = 15;
   paginatedItems: any[] = [];
+  searchItems: any[] = [];
+  searchingData: string = '';
+  totalSearchItems: number = 0;
 
   constructor(private dataService: ServiceService) { }
 
@@ -28,6 +31,12 @@ export class LeaveManagementComponent implements OnInit {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.paginatedItems = this.holidayList.slice(startIndex, endIndex);
+  }
+
+  searchData(page: number): void {
+    const startIndex = (page - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedItems = this.searchItems.slice(startIndex, endIndex);
   }
 
   handlePageEvent(event: PageEvent): void {
@@ -47,5 +56,13 @@ export class LeaveManagementComponent implements OnInit {
       this.totalItems = this.holidayList.length;
 
     })
+  }
+
+  searchHoliday() {
+    console.log(this.searchingData);
+
+    this.searchItems = []
+    this.searchItems = this.holidayList.filter(item => item.summary.toLowerCase().includes(this.searchingData.toLowerCase()));
+    this.searchData(1);
   }
 }
