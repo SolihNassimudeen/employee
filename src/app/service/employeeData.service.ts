@@ -74,7 +74,6 @@ export class ServiceService {
             username: username,
             password: password
         }
-        console.log(LOGINDATA);
         return this.http.post('/adminpanel/login', LOGINDATA);
     }
     forgetPassword(verificationData: any): Observable<any> {

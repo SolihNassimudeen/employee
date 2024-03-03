@@ -59,8 +59,6 @@ export class LeaveManagementComponent implements OnInit {
   }
 
   searchHoliday() {
-    console.log(this.searchingData);
-
     this.searchItems = []
     this.searchItems = this.holidayList.filter(item => item.summary.toLowerCase().includes(this.searchingData.toLowerCase()));
     this.searchData(1);

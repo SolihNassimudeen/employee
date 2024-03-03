@@ -38,8 +38,6 @@ export class PaginatorComponent {
   }
 
   nextPage(): void {
-    console.log('next page call');
-
     if (this.currentPage < this.getTotalPages()) {
       this.currentPage++;
       this.emitPageChanges();
