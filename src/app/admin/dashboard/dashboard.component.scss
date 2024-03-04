@@ -6,15 +6,19 @@
 }
 
 //header Tag
-.activePageArrow {
-    color: #adb5bd;
+.activePageTag {
+    color: #845ef7;
+    font-weight: 700;
 }
 
-.activePageTag {
-    font-size: 12px;
-    color: #845ef7;
-    font-weight: 600;
+.dashboardSection {
+    background-color: #f3effe9f;
+    padding-top: 6px;
+    border-radius: 10px;
+}
 
+.containerClass {
+    background-color: #fff;
 }
 
 .boxShadowDashboard {
@@ -24,6 +28,7 @@
 .boxShadowDashboard:hover {
     box-shadow: 0 0 12px -2px #b197fc;
 }
+
 
 //chart
 .doughnutChartDiv {
@@ -67,7 +72,24 @@
 //total project div
 .totalProjectContainer {
     overflow-y: auto;
-    height: 27.9rem;
+    height: 22.2rem;
+}
+
+.filterButton {
+    border: none;
+    border-radius: 5px;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.filterButtonActive {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.filterIcon {
+    font-size: 1.2rem;
 }
 
 .totalProjectContainer::-webkit-scrollbar {
@@ -163,4 +185,15 @@
 
 .activeRadioStyle {
     border-color: red;
+}
+
+.activeRadioEdit {
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+
+.errorMsg {
+    color: red;
+    font-size: 12px;
 }

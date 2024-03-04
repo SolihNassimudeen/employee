@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit {
             name: ['', Validators.required],
             position: ['', Validators.required],
             username: ['', Validators.required],
-            password: ['']
+            password: [''],
+            email: ['', Validators.required]
         });
     }
 

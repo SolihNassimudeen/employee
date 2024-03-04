@@ -6,8 +6,7 @@
 
 <section class="px-lg-3 px-md-2">
     <div class="pt-md-2 pt-lg-3 pb-md-2 pb-lg-3">
-        <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
-                class="activePageTag">Dashboard</span></p>
+        <p class="d-flex gap-2 align-items-center"><span class="activePageTag fs-5">Admin Dashboard</span></p>
     </div>
 </section>
 
@@ -32,12 +31,12 @@
     </div>
 </div>
 
-<div class="row mx-md-1 mx-lg-3">
+<div class="row dashboardSection mx-md-1 mx-lg-3">
     <div class="col-md-6">
         <div class="mx-1">
-            <h2 class="m-0">Project Metrics</h2>
+            <h3 class="fw-medium">Project Metrics</h3>
             <div
-                class="d-flex gap-md-2 gap-lg-3 gap-xl-5 my-md-2 my-lg-3 align-items-center doughnutChartDiv boxShadowDashboard">
+                class="d-flex containerClass gap-md-2 gap-lg-3 gap-xl-5 my-md-2 my-lg-3 align-items-center doughnutChartDiv boxShadowDashboard">
                 <div class="doughnutContainer ">
                     <canvas id="semiCircleDoughnut"></canvas>
                 </div>
@@ -56,10 +55,10 @@
                     </div>
                 </div>
             </div>
-            <h2>Pending Projects</h2>
-            <div class="boxShadowDashboard pendingProjectContainer p-lg-2">
+            <h3 class="fw-medium">{{listedTable}} Projects</h3>
+            <div class="boxShadowDashboard containerClass pendingProjectContainer p-lg-2">
                 <div class="d-flex justify-content-between align-items-center projectContainer"
-                    *ngFor="let project of pendingProjectList">
+                    *ngFor="let project of selectedProjectList">
                     <p class="m-0">{{project.projectname}}</p>
                 </div>
             </div>
@@ -68,57 +67,74 @@
         </div>
     </div>
     <div class="col-md-6">
-        <h2>New Additions</h2>
-        <div class="boxShadowDashboard p-md-3">
+        <h3 class="fw-medium">New Additions</h3>
+        <div class="boxShadowDashboard containerClass p-md-3">
             <form>
                 <label class="mb-1" for="projectName"><strong> Project newly committed</strong></label>
                 <div class="d-flex gap-md-1 gap-lg-2 ">
                     <input type=" text" class="form-control" placeholder="New project name" [(ngModel)]="projectName"
                         name="projectName">
-                    <button class="addNewProject" title="submit" (click)="addNewProject()" type="submit">Commit</button>
+                    <button class="addNewProject" title="Add" (click)="addNewProject()" type="submit">Add</button>
                 </div>
+                <p class="errorMsg mt-2">{{projectErrMsg}}</p>
             </form>
         </div>
         <div class="mt-4">
             <div class="d-flex pe-2">
-                <h2>Total Projects</h2>
+                <h3 class="fw-medium">Total Projects</h3>
             </div>
-            <div class="boxShadowDashboard totalProjectContainer p-lg-2">
-                <div class="d-flex p-1 justify-content-between align-items-center projectContainer"
-                    *ngFor="let project of projectlist;let index=index">
-                    <p class="m-0">{{project.projectname}}</p>
-                    <div class="d-flex flex-md-column flex-lg-row gap-3">
-                        <div class="d-flex flex-column align-items-center gap-1">
-                            <label class=" radioLabel" for="completed Radio button">completed</label>
-                            <input [disabled]="editedIndex!==index" [ngClass]="{'activeRadioStyle':editedIndex==index}"
-                                id="projectStatsRadio1" class="form-check-input radioStyle"
-                                name="projectProcessStatus{{index}}" [(ngModel)]="project.status" [value]="'completed'"
-                                type="radio">
-                        </div>
-                        <div class="d-flex flex-column align-items-center gap-1">
-                            <label class="radioLabel" for="progress Radio button">progress</label>
-                            <input [disabled]="editedIndex!==index" [ngClass]="{'activeRadioStyle':editedIndex==index}"
-                                id="projectStatsRadio2" class="form-check-input radioStyle"
-                                name="projectProcessStatus{{index}}" [(ngModel)]="project.status" [value]="'progress'"
-                                type="radio">
-                        </div>
-                        <div class="d-flex flex-column align-items-center gap-1">
-                            <label class="radioLabel" for="pending Radio button">pending</label>
-                            <input [disabled]="editedIndex!==index" [ngClass]="{'activeRadioStyle':editedIndex==index}"
-                                id="projectStatsRadio3" class="form-check-input radioStyle"
-                                name="projectProcessStatus{{index}}" [(ngModel)]="project.status" [value]="'pending'"
-                                type="radio">
-                        </div>
+            <div class="boxShadowDashboard containerClass p-lg-2">
+                <div class="d-flex justify-content-between p-1 align-items-center">
+                    <div class=" d-flex gap-3 align-items-center">
+                        <label for=" projectName">Name</label>
+                        <button [ngClass]="{'filterButtonActive':isFilter}" class="filterButton" (click)="filterOn()"><i
+                                class="bi bi-sort-alpha-down filterIcon"></i>
+                            <!-- <i
+                                class="bi bi-sort-alpha-down-alt"></i> -->
+                        </button>
                     </div>
-                    <div class="d-flex gap-3">
-                        <button class="btn_editColor card_btnStructure" title="edit button"
-                            (click)="totalProjectEdit(index,project.slno)" *ngIf="editedIndex!==index"><i
-                                class="bi bi-pencil-fill"></i></button>
-                        <button *ngIf="editedIndex===index" class="btn_editColor card_btnStructure"
-                            title="submit button" (click)="submitEdit()"><i class="bi bi-floppy"></i></button>
-                        <button class="btn_deleteColor card_btnStructure" data-bs-toggle="modal"
-                            data-bs-target="#projectListDeleteModal" title="delete button"
-                            (click)="deleteTotalProjectItem(project.slno)"><i class="bi bi-trash-fill"></i></button>
+                    <label for="projectStatus">Status</label>
+                    <label for="Action">Action</label>
+                </div>
+                <hr class="m-0">
+                <div class="totalProjectContainer">
+                    <div class="d-flex p-1 justify-content-between align-items-center projectContainer"
+                        *ngFor="let project of projectlist;let index=index">
+                        <p class="m-0">{{project.projectname}}</p>
+                        <div [ngClass]="{'activeRadioEdit':editedIndex===index}"
+                            class="d-flex flex-md-column flex-lg-row gap-3">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                                <label class=" radioLabel" for="completed Radio button">completed</label>
+                                <input [disabled]="editedIndex!==index"
+                                    [ngClass]="{'activeRadioStyle':editedIndex==index}" id="projectStatsRadio1"
+                                    class="form-check-input radioStyle" name="projectProcessStatus{{index}}"
+                                    [(ngModel)]="project.status" [value]="'completed'" type="radio">
+                            </div>
+                            <div class="d-flex flex-column align-items-center gap-1">
+                                <label class="radioLabel" for="progress Radio button">progress</label>
+                                <input [disabled]="editedIndex!==index"
+                                    [ngClass]="{'activeRadioStyle':editedIndex==index}" id="projectStatsRadio2"
+                                    class="form-check-input radioStyle" name="projectProcessStatus{{index}}"
+                                    [(ngModel)]="project.status" [value]="'progress'" type="radio">
+                            </div>
+                            <div class="d-flex flex-column align-items-center gap-1">
+                                <label class="radioLabel" for="pending Radio button">pending</label>
+                                <input [disabled]="editedIndex!==index"
+                                    [ngClass]="{'activeRadioStyle':editedIndex==index}" id="projectStatsRadio3"
+                                    class="form-check-input radioStyle" name="projectProcessStatus{{index}}"
+                                    [(ngModel)]="project.status" [value]="'pending'" type="radio">
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <button class="btn_editColor card_btnStructure" title="edit button"
+                                (click)="totalProjectEdit(index,project.slno)" *ngIf="editedIndex!==index"><i
+                                    class="bi bi-pencil-fill"></i></button>
+                            <button *ngIf="editedIndex===index" class="btn_editColor card_btnStructure"
+                                title="submit button" (click)="submitEdit()"><i class="bi bi-floppy"></i></button>
+                            <button class="btn_deleteColor card_btnStructure" data-bs-toggle="modal"
+                                data-bs-target="#projectListDeleteModal" title="delete button"
+                                (click)="deleteTotalProjectItem(project.slno)"><i class="bi bi-trash-fill"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

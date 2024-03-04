@@ -7,8 +7,8 @@ import { CommonService } from 'src/app/service/common.service';
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent {
-  @Input() isLoading!: boolean;
-  constructor() {
+  // @Input() isLoading!: boolean;
+  constructor(public commonsService: CommonService) {
 
   }
 }

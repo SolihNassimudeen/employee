@@ -31,6 +31,14 @@
         "target": "http://localhost:8080/",
         "secure": false
     },
+    "/project/completeProject": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
+    "/project/progressProject": {
+        "target": "http://localhost:8080/",
+        "secure": false
+    },
     "/project/addProject": {
         "target": "http://localhost:8080/",
         "secure": false
@@ -84,10 +92,6 @@
         "secure": false
     },
     "/adminpanel/verification": {
-        "target": "http://localhost:8080/",
-        "secure": false
-    },
-    "/adminpanel/changePassword": {
         "target": "http://localhost:8080/",
         "secure": false
     }

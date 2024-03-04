@@ -42,7 +42,8 @@ export class AdminCabinComponent implements OnInit {
             name: ['', [Validators.required, Validators.minLength(3)]],
             position: ['', [Validators.required]],
             username: ['', [Validators.required, Validators.minLength(3)]],
-            password: ['', [Validators.required, Validators.minLength(3)]]
+            password: ['', [Validators.required, Validators.minLength(3)]],
+            email: ['', [Validators.required, Validators.minLength(3)]]
         });
     }
 

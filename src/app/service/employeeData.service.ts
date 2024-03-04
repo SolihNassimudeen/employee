@@ -38,6 +38,12 @@ export class ServiceService {
     pendingProject(): Observable<any> {
         return this.http.get('/project/pendingProject')
     }
+    completedProject(): Observable<any> {
+        return this.http.get('/project/completeProject')
+    }
+    progressProject(): Observable<any> {
+        return this.http.get('/project/progressProject')
+    }
     deletitemfromProjectlist(deleteslno: number): Observable<any> {
         return this.http.delete(`/project/deleteItem/${deleteslno}`)
     }

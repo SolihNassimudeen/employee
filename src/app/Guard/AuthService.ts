@@ -17,7 +17,7 @@ export class AuthService {
 
     logout() {
         this.isLoggedIn = false;
-        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('isAuthenticated', 'false');
     }
 
     isAuthenticated() {

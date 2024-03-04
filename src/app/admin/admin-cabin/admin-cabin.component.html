@@ -37,6 +37,11 @@
                             formControlName="password">
                         <p *ngIf="isSubmitted && !adminList.value.password" class="errorMsg">*Enter a valid Password</p>
                     </div>
+                    <div class="d-flex flex-column gap-1">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter your email" formControlName="email">
+                        <p *ngIf="isSubmitted && !adminList.value.email" class="errorMsg">*Enter a valid email</p>
+                    </div>
 
                     <div class="d-flex justify-content-end mt-2 gap-2">
                         <button title="cancel button" class="modalCancel" #addModalcancel data-bs-dismiss="modal"
@@ -83,6 +88,11 @@
                             formControlName="password">
                         <p *ngIf="isSubmitted && !adminList.value.password" class="errorMsg">*Enter a valid Password</p>
                     </div>
+                    <div class="d-flex flex-column gap-1">
+                        <label for="password">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter your email" formControlName="email">
+                        <p *ngIf="isSubmitted && !adminList.value.email" class="errorMsg">*Enter a valid email</p>
+                    </div>
 
                     <div class="d-flex justify-content-end mt-2 gap-2">
                         <button title="cancel button" class="modalCancel" #upadateAdminModalcancel
@@ -124,7 +134,10 @@
 
 <section class="px-lg-3 px-md-2 pt-4">
     <div class="d-flex justify-content-between">
-        <h2 class="adminTitle pb-2">Admin</h2>
+        <div>
+            <p class="adminTitle fs-5 pb-2">Admin Settings</p>
+            <p>All Admins are listed here</p>
+        </div>
         <div>
             <button title="add button" data-bs-toggle="modal" data-bs-target="#AddNewAdminModal"
                 class="addNewAdmin d-flex gap-2"><i class="bi bi-plus-lg addIcon"></i><strong>Add New
@@ -135,19 +148,21 @@
 
 <hr>
 
-<section class="adminSection p-4 mt-3">
-    <div class="d-flex justify-content-between px-4 py-2">
-        <p>Name</p>
-        <p>Position</p>
-        <p>Username</p>
-        <p>Action</p>
+<section class="adminSection dataSection p-4 mt-3">
+    <div class="d-flex justify-content-between pe-5 px-4 py-2">
+        <p class="adminTableHeading">Name</p>
+        <p class="adminTableHeading">Position</p>
+        <p class="adminTableHeading">Username</p>
+        <p class="adminTableHeading">Email</p>
+        <p class="adminTableHeading">Action</p>
     </div>
     <div class="d-flex flex-column gap-3">
         <div *ngFor="let admin of adminDetailsList"
             class="card flex-row justify-content-between p-3 align-items-center">
-            <strong><span>{{admin.name}}</span></strong>
-            <strong><span>{{admin.position}}</span></strong>
-            <strong><span>{{admin.username}}</span></strong>
+            <span>{{admin.name}}</span>
+            <span>{{admin.position}}</span>
+            <span>{{admin.username}}</span>
+            <span>{{admin.email}}</span>
             <div class="d-flex gap-3">
                 <div class="flex-fill d-flex justify-content-end">
                     <button title="edit button" (click)="updateRequest(admin.slno)"

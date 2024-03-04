@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterContentInit, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ChartEvent } from 'chart.js/dist/core/core.plugins';
+import { ActiveElement } from 'chart.js/dist/plugins/plugin.tooltip';
 import { Chart, registerables, TooltipItem } from 'node_modules/chart.js';
 import { ServiceService } from 'src/app/service/employeeData.service';
 
@@ -29,10 +30,13 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
     pendingProjectCount = 0;
     projectlist: any[] = [];
     projectName: string = '';
-    pendingProjectList: any[] = [];
+    selectedProjectList: any[] = [];
     editedIndex: number | null = null;
     editedSlno: number | null = null;
     deleteItemSlno = -1;
+    projectErrMsg: string = '';
+    listedTable: string = 'Pending';
+    isFilter = false;
 
     constructor(public serviceData: ServiceService) { }
 
@@ -40,6 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
         this.getProjectList();
         this.assignProjectCount();
         this.pendingProjects();
+        this.projectErrMsg = '';
     }
 
     ngAfterContentInit(): void {
@@ -54,9 +59,28 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
     }
 
     pendingProjects() {
+        this.listedTable = 'Pending';
         this.serviceData.pendingProject().subscribe((data) => {
             if (data) {
-                this.pendingProjectList = data;
+                this.selectedProjectList = data;
+            }
+        })
+    }
+
+    completedProjects() {
+        this.listedTable = 'Completed';
+        this.serviceData.completedProject().subscribe((data) => {
+            if (data) {
+                this.selectedProjectList = data;
+            }
+        })
+    }
+
+    progressProjects() {
+        this.listedTable = 'Progress';
+        this.serviceData.progressProject().subscribe((data) => {
+            if (data) {
+                this.selectedProjectList = data;
             }
         })
     }
@@ -106,7 +130,14 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                 this.semiCirclechart(this.completedProjectCount, this.onProcessProjectCount, this.pendingProjectCount)
                 this.pendingProjects();
                 this.showAlertMessage();
+                this.projectName = '';
             })
+        } else {
+            this.projectErrMsg = 'Enter a project Names';
+            setTimeout(() => {
+                this.projectErrMsg = '';
+            }, 2000);
+
         }
     }
 
@@ -175,9 +206,36 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
                         }
                     }
                 },
+                onClick: (event: ChartEvent, elements: ActiveElement[], chart: Chart) => this.chartItemClicked(event, chart),
                 aspectRatio: 2,
             }
         });
+    }
+
+    chartItemClicked(event: any, chart: Chart) {
+        const activePoints = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+        if (activePoints && activePoints.length > 0) {
+            const CLICKED_INDEX = activePoints[0]?.index;
+            switch (CLICKED_INDEX) {
+                case 0: this.completedProjects();
+                    break;
+                case 1: this.progressProjects();
+                    break;
+                case 2: this.pendingProjects();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    filterOn() {
+        this.isFilter = !this.isFilter
+        if (this.isFilter) {
+            this.projectlist.sort((a, b) => a.projectname.localeCompare(b.projectname));
+        } else {
+            this.getProjectList();
+        }
     }
 
     ngOnDestroy(): void {

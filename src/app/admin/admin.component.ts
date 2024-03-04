@@ -6,11 +6,8 @@ import { CommonService } from '../service/common.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
-  constructor(public commonService: CommonService) { }
-
-  ngOnInit() {
-  }
+  constructor() { }
 
 }

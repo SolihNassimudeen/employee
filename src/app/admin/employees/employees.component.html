@@ -6,8 +6,7 @@
 
 <section class="px-lg-3 px-md-2">
     <div class="pt-3 pb-3">
-        <p class="d-flex gap-2 align-items-center"><span class="activePageArrow">></span><span
-                class="activePageTag">Employees</span></p>
+        <p class="d-flex gap-2 align-items-center"><span class="activePageTag fs-5">Employees Dashboard</span></p>
     </div>
 
     <div class="d-flex justify-content-between">
@@ -97,15 +96,15 @@
                         <p class="errorMsg" *ngIf="validationMap.get('management')">{{validationMap.get('management')}}
                         </p>
                     </div>
-                    <div class="d-flex w-100">
-                        <div>
+                    <div class="row">
+                        <div class="col-6">
                             <label for="code">Employee code</label>
-                            <input class="form-control w-50 p-1" placeholder="Code" type="number"
+                            <input class="form-control p-1" placeholder="Code" type="number"
                                 [(ngModel)]="employeeDetails.emp_code" name="emp_code">
                             <p class="errorMsg" *ngIf="validationMap.get('emp_code')">{{validationMap.get('emp_code')}}
                             </p>
                         </div>
-                        <div>
+                        <div class="col-6">
                             <label for="date">Joining date</label>
                             <input required class="form-control w-100 p-1" type="date"
                                 [(ngModel)]="employeeDetails.joiningdate" name="joiningDate">
@@ -195,15 +194,15 @@
                         <p class="errorMsg" *ngIf="validationMap.get('management')">{{validationMap.get('management')}}
                         </p>
                     </div>
-                    <div class="d-flex w-100">
-                        <div>
+                    <div class="row">
+                        <div class="col-6">
                             <label for="code">Employee code</label>
-                            <input disabled class="form-control w-50 p-1" placeholder="Code" required type="number"
+                            <input disabled class="form-control p-1" placeholder="Code" required type="number"
                                 [(ngModel)]="employeeDetails.emp_code" name="emp_code">
                             <p class="errorMsg" *ngIf="validationMap.get('emp_code')">{{validationMap.get('emp_code')}}
                             </p>
                         </div>
-                        <div>
+                        <div class="col-6">
                             <label for="date">Joining date</label>
                             <input required class="form-control w-100 p-1" type="date"
                                 [(ngModel)]="employeeDetails.joiningdate" name="joiningDate">
@@ -256,7 +255,7 @@
     </div>
 </div>
 
-<section class="row mx-1 mt-3 SectionCard" *ngIf="!searchingName">
+<section class="row mx-1 mt-3 dataSection SectionCard" *ngIf="!searchingName">
     <div class="col-md-6 col-lg-4 col-xl-3 p-md-3 p-lg-3" *ngFor="let cardData of employeeList">
         <div class="card p-md-3 p-xl-4 gap-md-2">
             <div class="d-flex gap-3 align-items-center">
