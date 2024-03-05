@@ -60,29 +60,35 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
 
     pendingProjects() {
         this.listedTable = 'Pending';
-        this.serviceData.pendingProject().subscribe((data) => {
-            if (data) {
-                this.selectedProjectList = data;
-            }
-        })
+        // this.serviceData.pendingProject().subscribe((data) => {
+        //     if (data) {
+        //         this.selectedProjectList = data;
+        //     }
+        // })
+        this.selectedProjectList = this.projectlist.filter(item => item.status.includes('pending'));
+        console.log(this.selectedProjectList);
+
     }
 
     completedProjects() {
         this.listedTable = 'Completed';
-        this.serviceData.completedProject().subscribe((data) => {
-            if (data) {
-                this.selectedProjectList = data;
-            }
-        })
+        // this.serviceData.completedProject().subscribe((data) => {
+        //     if (data) {
+        //         this.selectedProjectList = data;
+        //     }
+        // })
+        this.selectedProjectList = this.projectlist.filter(item => item.status.includes('completed'));
+        console.log(this.selectedProjectList);
     }
 
     progressProjects() {
         this.listedTable = 'Progress';
-        this.serviceData.progressProject().subscribe((data) => {
-            if (data) {
-                this.selectedProjectList = data;
-            }
-        })
+        // this.serviceData.progressProject().subscribe((data) => {
+        //     if (data) {
+        //         this.selectedProjectList = data;
+        //     }
+        // })
+        this.selectedProjectList = this.projectlist.filter(item => item.status.includes('progress'));
     }
 
     assignProjectCount() {
@@ -118,6 +124,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
     getProjectList() {
         this.serviceData.getAllprojectList().subscribe((data) => {
             this.projectlist = data;
+            this.pendingProjects();
         })
     }
 
