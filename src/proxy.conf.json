@@ -94,5 +94,9 @@
     "/adminpanel/verification": {
         "target": "http://localhost:8080/",
         "secure": false
+    },
+    "/adminpanel/passwordUpdate": {
+        "target": "http://localhost:8080/",
+        "secure": false
     }
 }

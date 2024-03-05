@@ -12,13 +12,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
     @ViewChild('verificationModalcancel') verificationModalcancel!: ElementRef;
+    @ViewChild('changePasswordModalOpen') changePasswordModalOpen!: ElementRef;
+    @ViewChild('changePasswordCancel') changePasswordCancel!: ElementRef;
 
     adminDetail!: FormGroup;
     adminname: string = '';
     password: string = '';
     errorMsg: string = '';
     forgotPassword = '';
-    ifFogotPasswordDiv = false;
+    newPassword: string = '';
+    conformPassword: string = '';
+    updatedAdminSlno: number = -1;
+
 
     constructor(private route: Router, private dataService: ServiceService, private authService: AuthService, private fb: FormBuilder) { }
 
@@ -55,6 +60,7 @@ export class LoginComponent implements OnInit {
     }
 
     cancelModal() {
+        this.forgotPassword = '';
         this.adminDetail.reset();
     }
 
@@ -63,25 +69,32 @@ export class LoginComponent implements OnInit {
         if (this.adminDetail.valid) {
             this.dataService.forgetPassword(this.adminDetail.value).subscribe((data) => {
                 if (data) {
-                    this.forgotPassword = ' Your Password is : ' + data.password;
-                    this.ifFogotPasswordDiv = true;
-                    setTimeout(() => {
-                        this.ifFogotPasswordDiv = false;
-                        this.forgotPassword = '';
-                    }, 3000);
+                    this.forgotPassword = '';
+                    this.updatedAdminSlno = data.slno;
                     (this.verificationModalcancel.nativeElement as HTMLButtonElement).click();
+                    (this.changePasswordModalOpen.nativeElement as HTMLButtonElement).click();
                 } else {
                     this.forgotPassword = 'You entered data not in Admin Database'
-                    this.ifFogotPasswordDiv = true;
-                    setTimeout(() => {
-                        this.ifFogotPasswordDiv = false;
-                        this.forgotPassword = '';
-                    }, 3000);
                 }
             })
         } else {
             alert('Fill all input fields')
         }
+    }
+
+    updatePassword() {
+        if (this.newPassword && this.newPassword === this.conformPassword) {
+            this.dataService.updatePassword(this.conformPassword, this.updatedAdminSlno).subscribe((data) => {
+                alert(data.message);
+                this.newPassword = '';
+                this.conformPassword = '';
+                (this.changePasswordCancel.nativeElement as HTMLButtonElement).click();
+
+            })
+        } else {
+            alert("password conformation failed.")
+        }
+
     }
 }
 

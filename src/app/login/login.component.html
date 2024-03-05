@@ -32,18 +32,51 @@
                             data-bs-dismiss="modal" (click)="cancelModal()">cancel</button>
                         <button title="submit button" type=" submit" class="submit"
                             (click)="submitDetailCheck()">Verify</button>
+                        <button #changePasswordModalOpen class="resetPasswordModalBtn" data-bs-toggle="modal"
+                            data-bs-target="#passwordChangeModal"></button>
                     </div>
+                    <p class="errorMsg"> {{forgotPassword}}</p>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="passwordChangeModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form_div">
+                <h3 class="card_colorViolet mb-2"><strong>Enter New Password</strong>
+                </h3>
+                <hr class="mb-3">
+                <div class="d-flex flex-column gap-2">
+                    <div class="d-flex flex-column gap-1">
+                        <label for="name">New Password</label>
+                        <input class="form-control p-1" type="password" required placeholder="Password"
+                            [(ngModel)]="newPassword">
+                    </div>
+                    <div class="d-flex flex-column gap-1">
+                        <label for="position">Re-Enter Password</label>
+                        <input type="text" class="form-control" placeholder="Conform Password"
+                            [(ngModel)]="conformPassword">
+                    </div>
+                    <div class="d-flex justify-content-end mt-2 gap-2">
+                        <button title="cancel button" class="modalCancel" #changePasswordCancel data-bs-dismiss="modal"
+                            (click)="cancelModal()">cancel</button>
+                        <button title="submit button" type=" submit" class="submit" (click)="updatePassword()">Reset
+                            Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="loginSection">
     <div class="row m-0 ">
-        <div *ngIf="ifFogotPasswordDiv" class="passwordDisplay">
-            <p> <span>{{forgotPassword}}</span></p>
-        </div>
         <div class="col"></div>
         <div class="col-md-6">
             <form class="row">

@@ -85,6 +85,9 @@ export class ServiceService {
     forgetPassword(verificationData: any): Observable<any> {
         return this.http.post('/adminpanel/verification', verificationData)
     }
+    updatePassword(password: string, slno: number): Observable<any> {
+        return this.http.put(`/adminpanel/passwordUpdate/${slno}`, { password: password })
+    }
     adminsCount(): Observable<any> {
         return this.http.get("/adminpanel/adminCount");
     }
